@@ -1,7 +1,7 @@
 %% This is file `cag-template.tex',
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /dir/cag-template_old.tex   Wed Nov 30 23:18:45 2022
-%DIF ADD /dir/cag-template.tex       Wed Nov 30 23:18:45 2022
+%DIF DEL /dir/cag-template_old.tex   Wed Nov 30 23:33:35 2022
+%DIF ADD /dir/cag-template.tex       Wed Nov 30 23:33:35 2022
 %% 
 %% Copyright 2018 Elsevier Ltd
 %% 
@@ -183,9 +183,21 @@ Recently, Oliveira and Paiva~\cite{oliveira2022narrow} solved the particle defic
 
 However, we find that the unevenness of fluid surfaces caused by the distribution of particles has not yet been handled properly in screen space rendering. Inspired by work from Yu and Turk~\cite{yu2013reconstructing}, we provide anisotropic transformation for particle textures prior to the derivation of depth image to get a smoother fluid surface.
 
-\begin{figure}[!t]
-    % \setlength{\abovecaptionskip}{1mm}
-    % \setlength{\belowcaptionskip}{-5mm}
+%DIF <  \begin{figure}[!t]
+%DIF <  \centering
+%DIF <  \begin{overpic}
+%DIF <      [width=\linewidth]{figs/surface_processing.png}
+%DIF <      \put(50,88) {camera}
+%DIF <      \put(55,63) {foreground surface}
+%DIF <      \put(5,37) {background surface}
+%DIF <      \put(63,5) {refraction direction}
+%DIF <  \end{overpic}
+%DIF <  \caption{The schematic diagram of surface processing in screen space rendering method.}
+%DIF <  \label{fig:figure1}
+%DIF <  \end{figure}
+\DIFaddbegin \begin{figure}[!t]
+    %DIF >  \setlength{\abovecaptionskip}{1mm}
+    %DIF >  \setlength{\belowcaptionskip}{-5mm}
     \centering
     \subfigure[isotropic] {
     \includegraphics[width=0.47\linewidth]{figs/isotropic.png}
@@ -193,13 +205,13 @@ However, we find that the unevenness of fluid surfaces caused by the distributio
     \subfigure[anisotropic] {
     \includegraphics[width=0.47\linewidth]{figs/anisotropic.png}
     } 
-    \caption{Comparison of isotropic and anisotropic fluid particles.}
+    \caption{\DIFaddFL{Comparison of isotropic and anisotropic fluid particles.}}
     \label{fig:figure3}
 \end{figure}
 
 \begin{figure}[!t]
-    % \setlength{\abovecaptionskip}{1mm}
-    % \setlength{\belowcaptionskip}{-5mm}
+    %DIF >  \setlength{\abovecaptionskip}{1mm}
+    %DIF >  \setlength{\belowcaptionskip}{-5mm}
     \centering
     \subfigure[isotropic] {
     \includegraphics[width=0.22\textwidth]{figs/figure5_1_new.png}
@@ -207,9 +219,10 @@ However, we find that the unevenness of fluid surfaces caused by the distributio
     \subfigure[anisotropic] {
     \includegraphics[width=0.22\textwidth]{figs/figure5_2_new.png}
     } 
-    \caption{Experimental comparison of isotropy and anisotropy in the dam break scenario.}
+    \caption{\DIFaddFL{Experimental comparison of isotropy and anisotropy in the dam break scenario.}}
     \label{fig:figure4}
 \end{figure}
+\DIFaddend 
 
 \section{Real-time Screen Space Fluid Rendering}
 Fluid rendering in the screen space is performed by drawing the 3D fluid directly into the 2D screen without generating surface meshes, as shown in Fig.\ref{fig:figure1}, and is closely related to image processing algorithms~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
