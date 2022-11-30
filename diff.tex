@@ -184,44 +184,32 @@ Recently, Oliveira and Paiva~\cite{oliveira2022narrow} solved the particle defic
 However, we find that the unevenness of fluid surfaces caused by the distribution of particles has not yet been handled properly in screen space rendering. Inspired by work from Yu and Turk~\cite{yu2013reconstructing}, we provide anisotropic transformation for particle textures prior to the derivation of depth image to get a smoother fluid surface.
 
 \begin{figure}[!t]
-    %DIF >  \setlength{\abovecaptionskip}{1mm}
-    %DIF >  \setlength{\belowcaptionskip}{-5mm}
+    % \setlength{\abovecaptionskip}{1mm}
+    % \setlength{\belowcaptionskip}{-5mm}
     \centering
-    \DIFdelbeginFL %DIFDELCMD < \begin{overpic}
-%DIFDELCMD <     [%%%
-\DIFdelFL{width=}%DIFDELCMD < \linewidth]{%%%
-\DIFdelFL{figs/surface_processing.png}%DIFDELCMD < }
-%DIFDELCMD <     \put(50,88) %%%
-\DIFdelendFL \DIFaddbeginFL \subfigure[isotropic] \DIFaddendFL {
-    \DIFdelbeginFL \DIFdelFL{camera}\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.47\linewidth]{figs/isotropic.png}
-    \DIFaddendFL }    
-    \DIFdelbeginFL %DIFDELCMD < \put(55,63) %%%
-\DIFdelendFL \DIFaddbeginFL \subfigure[anisotropic] \DIFaddendFL {
-    \DIFdelbeginFL \DIFdelFL{foreground surface}\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.47\linewidth]{figs/anisotropic.png}
-    \DIFaddendFL } 
-    \DIFdelbeginFL %DIFDELCMD < \put(5,37) %%%
-\DIFdelendFL \DIFaddbeginFL \caption{\DIFaddFL{Comparison of isotropic and anisotropic fluid particles.}}
+    \subfigure[isotropic] {
+    \includegraphics[width=0.47\linewidth]{figs/isotropic.png}
+    }    
+    \subfigure[anisotropic] {
+    \includegraphics[width=0.47\linewidth]{figs/anisotropic.png}
+    } 
+    \caption{Comparison of isotropic and anisotropic fluid particles.}
     \label{fig:figure3}
 \end{figure}
 
 \begin{figure}[!t]
-    %DIF >  \setlength{\abovecaptionskip}{1mm}
-    %DIF >  \setlength{\belowcaptionskip}{-5mm}
+    % \setlength{\abovecaptionskip}{1mm}
+    % \setlength{\belowcaptionskip}{-5mm}
     \centering
-    \subfigure[isotropic] \DIFaddendFL {
-    \DIFdelbeginFL \DIFdelFL{background surface}\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.22\textwidth]{figs/figure5_1_new.png}
-    \DIFaddendFL }    
-    \DIFdelbeginFL %DIFDELCMD < \put(63,5) %%%
-\DIFdelendFL \DIFaddbeginFL \subfigure[anisotropic] \DIFaddendFL {
-    \DIFdelbeginFL \DIFdelFL{refraction direction}\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.22\textwidth]{figs/figure5_2_new.png}
-    \DIFaddendFL } 
-    \DIFdelbeginFL %DIFDELCMD < \end{overpic}
-%DIFDELCMD < %%%
-\DIFdelendFL \caption{\DIFdelbeginFL \DIFdelFL{The schematic diagram }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Experimental comparison }\DIFaddendFL of \DIFdelbeginFL \DIFdelFL{surface processing }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{isotropy and anisotropy }\DIFaddendFL in \DIFdelbeginFL \DIFdelFL{screen space rendering method}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{the dam break scenario}\DIFaddendFL .}
-    \DIFdelbeginFL %DIFDELCMD < \label{fig:figure1}
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \label{fig:figure4}
-\DIFaddendFL \end{figure}
+    \subfigure[isotropic] {
+    \includegraphics[width=0.22\textwidth]{figs/figure5_1_new.png}
+    }    
+    \subfigure[anisotropic] {
+    \includegraphics[width=0.22\textwidth]{figs/figure5_2_new.png}
+    } 
+    \caption{Experimental comparison of isotropy and anisotropy in the dam break scenario.}
+    \label{fig:figure4}
+\end{figure}
 
 \section{Real-time Screen Space Fluid Rendering}
 Fluid rendering in the screen space is performed by drawing the 3D fluid directly into the 2D screen without generating surface meshes, as shown in Fig.\ref{fig:figure1}, and is closely related to image processing algorithms~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD

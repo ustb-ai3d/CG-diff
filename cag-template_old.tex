@@ -136,18 +136,18 @@ Recently, Oliveira and Paiva~\cite{oliveira2022narrow} solved the particle defic
 
 However, we find that the unevenness of fluid surfaces caused by the distribution of particles has not yet been handled properly in screen space rendering. Inspired by work from Yu and Turk~\cite{yu2013reconstructing}, we provide anisotropic transformation for particle textures prior to the derivation of depth image to get a smoother fluid surface.
 
-\begin{figure}[!t]
-\centering
-\begin{overpic}
-    [width=\linewidth]{figs/surface_processing.png}
-    \put(50,88) {camera}
-    \put(55,63) {foreground surface}
-    \put(5,37) {background surface}
-    \put(63,5) {refraction direction}
-\end{overpic}
-\caption{The schematic diagram of surface processing in screen space rendering method.}
-\label{fig:figure1}
-\end{figure}
+% \begin{figure}[!t]
+% \centering
+% \begin{overpic}
+%     [width=\linewidth]{figs/surface_processing.png}
+%     \put(50,88) {camera}
+%     \put(55,63) {foreground surface}
+%     \put(5,37) {background surface}
+%     \put(63,5) {refraction direction}
+% \end{overpic}
+% \caption{The schematic diagram of surface processing in screen space rendering method.}
+% \label{fig:figure1}
+% \end{figure}
 
 \section{Real-time Screen Space Fluid Rendering}
 Fluid rendering in the screen space is performed by drawing the 3D fluid directly into the 2D screen without generating surface meshes, as shown in Fig.\ref{fig:figure1}, and is closely related to image processing algorithms~\cite{ref:green2010screen}. The schematic diagram describing the procedure of the surface rendering algorithm is shown in Fig.\ref{fig:figure2} and is detailed in the following.
