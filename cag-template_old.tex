@@ -124,6 +124,12 @@ Instead of directly tracing the particle surface and constructing the polygon me
 
 But several inherited artefacts of screen space rendering hinder its further exploitation and integration into a wider range of applications. For example, despite subsequent improvements in the original method, surfaces extracted from particles tend to be uneven, and are often too blurred to make a distinction between the foreground and the background. Inspired by Yu and Turk~\cite{yu2013reconstructing}, we propose an anisotropic transformation scheme for point texture, which is applied before filtering the depth image, to generate smooth surfaces in discontinuous regions and at the same time preserve vivid details.
 
+\begin{figure*}
+    \includegraphics[width=\linewidth]{figs/figure2_b.pdf}
+    \caption{Schematic flow diagram of screen space rendering pipeline for fluid rendering: First, transform the fluid particles to the screen space and obtain the depth information and thickness information. Second, post-process the depth image, reconstruct the normal on the depth image and render the fluid surface using normal and thickness information.}
+    \label{fig:figure2}
+\end{figure*}
+
 \section{Related work}
 Physics based fluid simulation approaches can be mainly divided into two categories: Eulerian methods~\cite{ref:ref4} which utilize a background grid to discretize space into cells, and meshless Lagrangian methods~\cite{ref:ref7} using particles to represent fluid volumes. For video games, virtual reality, and other real-time graphics applications, particle-based simulation such as SPH~\cite{IISPH2013,DFSPH2015,ref:ref5} is often the more preferred approach due to its high efficiency and flexibility~\cite{carensac2022optimizations}. 
 
@@ -158,6 +164,20 @@ Fluid rendering in the screen space is performed by drawing the 3D fluid directl
 First, the distance $z_i$ between each particle and camera pixel $i$ is calculated from the camera viewpoint~\cite{ref:ref20}.
 To obtain the fluid surface from the camera point of view, the point sprite~\cite{ref:ref21} method is used to render the particles as spheres, which allows us to directly extract the depth values from the video memory buffer.
 
+\begin{figure}[htbp]
+    % \setlength{\abovecaptionskip}{1mm}
+    % \setlength{\belowcaptionskip}{-5mm}
+    \centering
+    \subfigure[isotropic] {
+    \includegraphics[width=0.47\linewidth]{figs/isotropic.png}
+    }    
+    \subfigure[anisotropic] {
+    \includegraphics[width=0.47\linewidth]{figs/anisotropic.png}
+    } 
+    \caption{Comparison of isotropic and anisotropic fluid particles.}
+    \label{fig:figure3}
+\end{figure}
+
 \paragraph{Smoothing Depth Information}
 Direct use of spherical point sprites as depth information usually produces uneven fluid surfaces. To reduce the rugged effects, specific filters are applied to the depth image, flattening the abrupt bumps of particles by averaging $z_i$ for local pixels. One of the most common smoothing filters is a Gaussian filter\cite{ref:ref24}, with the formula:
 \begin{equation}
@@ -167,15 +187,31 @@ Direct use of spherical point sprites as depth information usually produces unev
 \label{con:equ2}
 \end{equation}
 
+\begin{figure*}[!t]
+    \centering
+\begin{overpic}[width=\linewidth]{figs/diagram2.pdf}
+    \put(2,10){$\mathbf{x}_p^0=\left[0,0,0,1\right]^T$}
+    \put(2,7.5){$\mathbf{x}_p=\left[x_p,y_p,z_p,1\right]^T$}
+    \put(22,10){$\mathbf{x}_p^{ani}=\mathbf{C}^{r,h}\mathbf{x}_p$}
+    \put(75,19.5){$\mathbf{x}_c=\mathbf{PMT}\mathbf{x}_p$}
+    \put(75,16.5){$r_c=\left\|\left(\mathbf{x}_c-\mathbf{x}_c^0\right).xyz \right\|$}
+    \put(75,7.5){$\mathbf{x}^0_c.z\ne\mathbf{x}_c^{ani}.z$}
+    \put(89,12.5){$\left(b_{+x},b_{+y},\mathbf{x}_c.z\right)$}
+    \put(79,2.5){$\left(b_{-x},b_{-y},\mathbf{x}_c.z\right)$}
+    \put(95,18){$r_c$}
+    \put(89,6){$r_c^{ani}$}
+    \put(39,22.5){$\mathbf{T}$}
+    \put(56,22.5){$\mathbf{M}$}
+    \put(57,10.5){$\mathbf{P}$}
+\end{overpic}
+    % \includegraphics[width=\linewidth]{figs/diagram2.pdf}
+    \caption{The pipeline of rasterizing the fluid particle onto the screen space. For representing fluid particles using an isotropic sphere. The stretching effects from the projection matrix $P$ are negligible. So particles always have a round appearance at the clip space, and the radius $r_c$ can be measured from the bias between the position of sphere centre $\mathbf{x}_c^0$ and any point on the sphere surface $\mathbf{x}_c$ at the clip coordinate. To perform a more desirable fluid effect, we apply the anisotropic transformation for each particle at the parameter space (red box). Furthermore, the resulting shape on the clip space is elliptical. The boundary of the ellipse can not be derived using the traditional method because the point on the resulting surface may not lie on the projected plane (not having the same depth $\mathbf{x}^0_c.z\ne\mathbf{x}_c^{ani}.z$). }
+    \label{fig:diag_aniso}
+\end{figure*}
+
+\noindent
 where $j$ is the neighbour pixel of $i$, $\sigma$ is the standard deviation parameter determined by $z_i$~\cite{truong2018narrow}, and ${\mathbf{p}}$ describes the location for each pixel in the screen space. 
 The Gaussian convolution can obtain smooth particle depth information. However, it can cause over-smoothing, leading to some loss of edges. Therefore, variants such as the bilateral Gaussian method are often used to obtain better results.
-
-\begin{figure*}[!t]
-\centering
-\includegraphics[scale=.6]{figs/figure2_b.png}
-\caption{Schematic flow diagram of our algorithm: First, transform the fluid particles to the screen space and obtain the depth information and thickness information. Second, post-process the depth image, reconstruct normal on the depth image and render the fluid surface using normal and thickness information.}
-\label{fig:figure2}
-\end{figure*}
 
 \subsection{Thickness Information}
 Fluid distribution in the real world is not uniform, so it is necessary to calculate the amount of fluid between the camera and the nearest opaque object, which is called the thickness image. When shading, the thickness image is used to calculate the colour and transparency of the fluid\cite{ref:ref14}. The formula is given as:
@@ -200,29 +236,17 @@ In particle-based fluid simulation, fluid particles are represented as spheres, 
 \label{con:equa9}
 \end{equation}
 where $m_j$ and $\rho_j$ are the volume and density of the neighbouring fluid particle $j$, $W$ is called the smoothing kernel or kernel function, which is a normalized Gaussian-like function~\cite{Ihmsen14}, $h$ is the support radius of the kernel function, beyond which $W$ takes the value of 0. In this paper, we use an anisotropic smoothing kernel $W(\mathbf{r},\mathbf{B})$ to replace the isotropic function $W(r,h)$ by introducing the anisotropy matrix $\mathbf{B}$ into the kernel function:
-\begin{figure}[!t]
-    % \setlength{\abovecaptionskip}{1mm}
-    % \setlength{\belowcaptionskip}{-5mm}
-    \centering
-    \subfigure[isotropic] {
-    \includegraphics[width=0.47\linewidth]{figs/isotropic.png}
-    }    
-    \subfigure[anisotropic] {
-    \includegraphics[width=0.47\linewidth]{figs/anisotropic.png}
-    } 
-    \caption{Comparison of isotropic and anisotropic fluid particles.}
-    \label{fig:figure3}
-\end{figure}
+
 
 \begin{figure*}[!t]
     % \setlength{\abovecaptionskip}{1mm}
     % \setlength{\belowcaptionskip}{-5mm}
     \centering
     \subfigure[isotropic] {
-    \includegraphics[width=0.48\textwidth]{figs/figure5_1.png}
+    \includegraphics[width=0.48\textwidth]{figs/figure5_1_new.png}
     }    
     \subfigure[anisotropic] {
-    \includegraphics[width=0.48\textwidth]{figs/figure5_2.png}
+    \includegraphics[width=0.48\textwidth]{figs/figure5_2_new.png}
     } 
     \caption{Experimental comparison of isotropy and anisotropy in the dam break scenario.}
     \label{fig:figure4}
@@ -275,7 +299,7 @@ A singular value decomposition for the covariance matrix yields $\mathbf{C}_{i}=
     \centering
     \subfigure[\vspace{2mm}isotropic point sprites representation]{
     \begin{overpic}
-    [width=0.48\textwidth]{figs/ball_iso.png}
+    [width=0.48\textwidth]{figs/ball_iso_new.png}
     \put(5,2)       {\footnotesize No filter}
     \put(25,2)      {\footnotesize Gaussian}
     \put(44,4)      {\footnotesize Curvature}
@@ -288,7 +312,7 @@ A singular value decomposition for the covariance matrix yields $\mathbf{C}_{i}=
     }   
     \subfigure[anisotropic point sprites representation]{
     \begin{overpic}
-    [width=0.48\textwidth]{figs/ball_aniso.png}
+    [width=0.48\textwidth]{figs/ball_aniso_new.png}
     \put(5,2)       {\footnotesize No filter}
     \put(25,2)      {\footnotesize Gaussian}
     \put(44,4)      {\footnotesize Curvature}
@@ -355,7 +379,7 @@ The relationship between particle number and corresponding frame rate under diff
     % \setlength{\abovecaptionskip}{1mm}
     % \setlength{\belowcaptionskip}{-5mm}
     \centering
-    \includegraphics[width=\linewidth]{figs/data1.png}
+    \includegraphics[width=\linewidth]{figs/FPS.png}
     \caption{Frame rate comparison of different algorithms.}
     \label{fig:figure8}
 \end{figure}

@@ -233,17 +233,30 @@ Fluid rendering in the screen space is performed by drawing the 3D fluid directl
 First, the distance $z_i$ between each particle and camera pixel $i$ is calculated from the camera viewpoint~\cite{ref:ref20}.
 To obtain the fluid surface from the camera point of view, the point sprite~\cite{ref:ref21} method is used to render the particles as spheres, which allows us to \DIFdelbegin \DIFdel{directly }\DIFdelend extract the depth values from the video memory buffer \DIFaddbegin \DIFadd{directly}\DIFaddend .
 
-\DIFaddbegin \begin{figure}[htbp]
-    %DIF >  \setlength{\abovecaptionskip}{1mm}
-    %DIF >  \setlength{\belowcaptionskip}{-5mm}
+% \DIFaddbegin \begin{figure}[htbp]
+%     %DIF >  \setlength{\abovecaptionskip}{1mm}
+%     %DIF >  \setlength{\belowcaptionskip}{-5mm}
+%     \centering
+%     \subfigure[isotropic] {
+%     \includegraphics[width=0.47\linewidth]{figs/isotropic.png}
+%     }    
+%     \subfigure[anisotropic] {
+%     \includegraphics[width=0.47\linewidth]{figs/anisotropic.png}
+%     } 
+%     \caption{\DIFaddFL{Comparison of isotropic and anisotropic fluid particles.}}
+%     \label{fig:figure3}
+% \end{figure}
+\begin{figure}[htbp]
+    % \setlength{\abovecaptionskip}{1mm}
+    % \setlength{\belowcaptionskip}{-5mm}
     \centering
     \subfigure[isotropic] {
-    \includegraphics[width=0.47\linewidth]{figs/isotropic.png}
+    \includegraphics[width=0.46\linewidth]{figs/isotropic.png}
     }    
     \subfigure[anisotropic] {
-    \includegraphics[width=0.47\linewidth]{figs/anisotropic.png}
+    \includegraphics[width=0.46\linewidth]{figs/anisotropic.png}
     } 
-    \caption{\DIFaddFL{Comparison of isotropic and anisotropic fluid particles.}}
+    \caption{Comparison of isotropic and anisotropic fluid particles.}
     \label{fig:figure3}
 \end{figure}
 
@@ -326,11 +339,11 @@ Afterwards, the refraction of the fluid~\cite{ref:ref25} and Blinn-Phong illumin
     %DIF >  \setlength{\belowcaptionskip}{-5mm}
     \centering
     \subfigure[isotropic] {
-    \includegraphics[width=0.48\linewidth]{figs/figure5_1_new.png}
+    \includegraphics[width=0.47\linewidth]{figs/figure5_1_new.png}
     }
     \DIFaddFL{\hspace{-7pt}
     }\subfigure[anisotropic] {
-    \includegraphics[width=0.48\linewidth]{figs/figure5_2_new.png}
+    \includegraphics[width=0.47\linewidth]{figs/figure5_2_new.png}
     } 
     \caption{\DIFaddFL{Experimental comparison of isotropy and anisotropy in the dam break scenario.}}
     \label{fig:figure4}
@@ -486,7 +499,40 @@ A singular value decomposition for the covariance matrix yields $\mathbf{C}_{i}=
 %DIFDELCMD <     \label{fig:ball_aniso}
 %DIFDELCMD <     } 
 %DIFDELCMD <     %%%
-\DIFdelendFL \DIFaddbeginFL \subfigure[\vspace{2mm}isotropic point sprites representation]{
+% \DIFdelendFL \DIFaddbeginFL \subfigure[\vspace{2mm}isotropic point sprites representation]{
+%     \begin{overpic}
+%     [width=0.48\textwidth]{figs/ball_iso_new.png}
+%     \put(5,2)       {\footnotesize No filter}
+%     \put(25,2)      {\footnotesize Gaussian}
+%     \put(44,4)      {\footnotesize Curvature}
+%     \put(47,0)      {\footnotesize Flow}
+%     \put(65,4)      {\footnotesize Bilateral}
+%     \put(64.5,0)    {\footnotesize Gaussian}
+%     \put(80,2)      {\footnotesize Narrow-Range}
+%     \end{overpic}
+%     \label{fig:ball_iso}
+%     }   
+%     \subfigure[anisotropic point sprites representation]{
+%     \begin{overpic}
+%     [width=0.48\textwidth]{figs/ball_aniso_new.png}
+%     \put(5,2)       {\footnotesize No filter}
+%     \put(25,2)      {\footnotesize Gaussian}
+%     \put(44,4)      {\footnotesize Curvature}
+%     \put(47,0)      {\footnotesize Flow}
+%     \put(65,4)      {\footnotesize Bilateral}
+%     \put(64.5,0)    {\footnotesize Gaussian}
+%     \put(80,2)      {\footnotesize Narrow-Range}
+%     \end{overpic}
+%     \label{fig:ball_aniso}
+%     } 
+%     \DIFaddendFL \caption{Experimental comparison of isotropy and anisotropy in the dam break scenario. Columns 1-5 is the (a) part of this figure, demonstrating surface constructed without anisotropic transformation; Columns 6-10 is the (b) part of this figure, showing how anisotropic transformation works with and without different smoothing filters.}
+%     \DIFdelbeginFL %DIFDELCMD < \label{fig:ball_iso&aniso}
+%DIFDELCMD < %%%
+% \DIFdelendFL \DIFaddbeginFL \label{fig:ball_iso_and_aniso}
+% \DIFaddendFL \end{figure*}
+\begin{figure*}[!t]
+    \centering
+    \subfigure[\vspace{2mm}isotropic point sprites representation]{
     \begin{overpic}
     [width=0.48\textwidth]{figs/ball_iso_new.png}
     \put(5,2)       {\footnotesize No filter}
@@ -512,11 +558,10 @@ A singular value decomposition for the covariance matrix yields $\mathbf{C}_{i}=
     \end{overpic}
     \label{fig:ball_aniso}
     } 
-    \DIFaddendFL \caption{Experimental comparison of isotropy and anisotropy in the dam break scenario. Columns 1-5 is the (a) part of this figure, demonstrating surface constructed without anisotropic transformation; Columns 6-10 is the (b) part of this figure, showing how anisotropic transformation works with and without different smoothing filters.}
-    \DIFdelbeginFL %DIFDELCMD < \label{fig:ball_iso&aniso}
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \label{fig:ball_iso_and_aniso}
-\DIFaddendFL \end{figure*}
+    \caption{Experimental comparison of isotropy and anisotropy in the dam break scenario. Columns 1-5 is the (a) part of this figure, demonstrating surface constructed without anisotropic transformation; Columns 6-10 is the (b) part of this figure, showing how anisotropic transformation works with and without different smoothing filters.}
+    \label{fig:ball_iso_and_aniso}
+\end{figure*}
+
 
 \DIFaddbegin \subsection{\DIFadd{Transforming Sphere Particles onto the Screen Space}}
 \DIFadd{As shown in Fig.~\ref{fig:diag_aniso}, the key implementation of the anisotropic transformation converting the spherical particle to an ellipsoid in this paper is by applying a $4\times 4$ homogeneous anisotropic transformation matrix $\mathbf{C}^{r,h}$ onto the sphere at the parameter space, which takes the form:
@@ -552,18 +597,32 @@ A singular value decomposition for the covariance matrix yields $\mathbf{C}_{i}=
 
 \DIFaddend The experiments below are performed using a hardware platform of AMD Ryzen 7 5800H @3.20 GHz, 32GB memory, and NVIDIA RTX 3060. The 3D graphics API OpenGL is used for particle rendering, and C++ is used as the hardware graphics interactive language to process logical operations. In addition, GLSL colouring language is used to calculate the fluid optical effect in GPU. The real-time performance of fluid is maintained during all experiments.
 
-\DIFaddbegin \begin{figure}[!b]
+% \DIFaddbegin \begin{figure}[!b]
+%     \centering
+%     \begin{overpic}
+%         [\DIFaddFL{width=}\linewidth]{\DIFaddFL{figs/figure9.png}}
+%         \put(6,-2)      {\footnotesize \DIFaddFL{Gaussian}}
+%         \put(25,-2)      {\footnotesize \DIFaddFL{Bilateral Gaussian}}
+%         \put(53,-2)      {\footnotesize \DIFaddFL{Curvature Flow}}
+%         \put(78,-2)      {\footnotesize \DIFaddFL{Narrow-Range}}
+%     \end{overpic}
+%     \caption{\DIFaddFL{From left to right are Gaussian filter, bilateral Gaussian filter, curvature flow filter and narrow-range filter. 
+%     %DIF >  All methods use the same number of iterations ($iter = 2$) except the curvature flow-based method with a larger number ($iter = 80$).
+%     }}
+%     \label{fig:figure6}
+% \end{figure}
+\begin{figure}[!b]
     \centering
     \begin{overpic}
-        [\DIFaddFL{width=}\linewidth]{\DIFaddFL{figs/figure9.png}}
-        \put(6,-2)      {\footnotesize \DIFaddFL{Gaussian}}
-        \put(25,-2)      {\footnotesize \DIFaddFL{Bilateral Gaussian}}
-        \put(53,-2)      {\footnotesize \DIFaddFL{Curvature Flow}}
-        \put(78,-2)      {\footnotesize \DIFaddFL{Narrow-Range}}
+        [width=\linewidth]{figs/figure9.png}
+        \put(6,-2)      {\footnotesize Gaussian}
+        \put(25,-2)      {\footnotesize Bilateral Gaussian}
+        \put(53,-2)      {\footnotesize Curvature Flow}
+        \put(78,-2)      {\footnotesize Narrow-Range}
     \end{overpic}
-    \caption{\DIFaddFL{From left to right are Gaussian filter, bilateral Gaussian filter, curvature flow filter and narrow-range filter. 
-    %DIF >  All methods use the same number of iterations ($iter = 2$) except the curvature flow-based method with a larger number ($iter = 80$).
-    }}
+    \caption{From left to right are Gaussian filter, bilateral Gaussian filter, curvature flow filter and narrow-range filter. 
+    % All methods use the same number of iterations ($iter = 2$) except the curvature flow-based method with a larger number ($iter = 80$).
+    }
     \label{fig:figure6}
 \end{figure}
 
@@ -572,27 +631,39 @@ In this subsection, the anisotropic algorithm is adopted to process fluid partic
 
 In addition, experimental verification is conducted for a fluid-solid coupling scenario, as shown in Fig.~\ref{fig:figure5}. In the fluid-solid coupling scenario, real-time fluid rendering based on the anisotropic algorithm shows better surface results with smoother surfaces, especially at the interface between the rigid body and liquid.
 
-\DIFdelbegin %DIFDELCMD < \begin{figure}[!t]
-%DIFDELCMD <     %%%
-\DIFdelendFL \DIFaddbeginFL \begin{figure}[htpb]
-    \DIFaddendFL \centering
+% \DIFdelbegin %DIFDELCMD < \begin{figure}[!t]
+% %DIFDELCMD <     %%%
+% \DIFdelendFL \DIFaddbeginFL \begin{figure}[htpb]
+%     \DIFaddendFL \centering
+%     \begin{overpic}
+%         [width=\linewidth]{figs/\DIFdelbeginFL \DIFdelFL{figure9}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{figure10}\DIFaddendFL .png}
+%         \DIFdelbeginFL %DIFDELCMD < \put(6,-2)      %%%
+% \DIFdelendFL \DIFaddbeginFL \put(6,-3)      \DIFaddendFL {\footnotesize Gaussian}
+%         \DIFdelbeginFL %DIFDELCMD < \put(25,-2)      %%%
+% \DIFdelendFL \DIFaddbeginFL \put(25.5,-3)     \DIFaddendFL {\footnotesize Bilateral Gaussian}
+%         \DIFdelbeginFL %DIFDELCMD < \put(53,-2)      %%%
+% \DIFdelendFL \DIFaddbeginFL \put(54,-3)     \DIFaddendFL {\footnotesize Curvature Flow}
+%         \DIFdelbeginFL %DIFDELCMD < \put(78,-2)      %%%
+% \DIFdelendFL \DIFaddbeginFL \put(78,-3)     \DIFaddendFL {\footnotesize Narrow-Range}
+%     \end{overpic}
+%     \caption{From left to right are Gaussian filter, bilateral Gaussian filter, curvature flow filter and narrow-range filter.%DIF <  All methods use the same number of iterations ($iter = 2$) except the curvature flow-based method with a larger number ($iter = 80$).
+%     }
+%     \DIFdelbeginFL %DIFDELCMD < \label{fig:figure6}
+% %DIFDELCMD < %%%
+% \DIFdelendFL \DIFaddbeginFL \label{fig:figure7}
+% \DIFaddendFL \end{figure}
+\begin{figure}[htpb]
+    \centering
     \begin{overpic}
-        [width=\linewidth]{figs/\DIFdelbeginFL \DIFdelFL{figure9}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{figure10}\DIFaddendFL .png}
-        \DIFdelbeginFL %DIFDELCMD < \put(6,-2)      %%%
-\DIFdelendFL \DIFaddbeginFL \put(6,-3)      \DIFaddendFL {\footnotesize Gaussian}
-        \DIFdelbeginFL %DIFDELCMD < \put(25,-2)      %%%
-\DIFdelendFL \DIFaddbeginFL \put(25.5,-3)     \DIFaddendFL {\footnotesize Bilateral Gaussian}
-        \DIFdelbeginFL %DIFDELCMD < \put(53,-2)      %%%
-\DIFdelendFL \DIFaddbeginFL \put(54,-3)     \DIFaddendFL {\footnotesize Curvature Flow}
-        \DIFdelbeginFL %DIFDELCMD < \put(78,-2)      %%%
-\DIFdelendFL \DIFaddbeginFL \put(78,-3)     \DIFaddendFL {\footnotesize Narrow-Range}
+        [width=\linewidth]{figs/figure10.png}
+        \put(6,-3)      {\footnotesize Gaussian}
+        \put(25.5,-3)     {\footnotesize Bilateral Gaussian}
+        \put(54,-3)     {\footnotesize Curvature Flow}
+        \put(78,-3)     {\footnotesize Narrow-Range}
     \end{overpic}
-    \caption{From left to right are Gaussian filter, bilateral Gaussian filter, curvature flow filter and narrow-range filter.%DIF <  All methods use the same number of iterations ($iter = 2$) except the curvature flow-based method with a larger number ($iter = 80$).
-    }
-    \DIFdelbeginFL %DIFDELCMD < \label{fig:figure6}
-%DIFDELCMD < %%%
-\DIFdelendFL \DIFaddbeginFL \label{fig:figure7}
-\DIFaddendFL \end{figure}
+    \caption{From left to right are Gaussian filter, bilateral Gaussian filter, curvature flow filter and narrow-range filter.}
+    \label{fig:figure7}
+\end{figure}
 
 \subsection{Combination with Popular Smoothing Filters}
 In this subsection, the anisotropic algorithm is combined with various popular smoothing filters to verify the effectiveness and practicability of the proposed scheme under actual application scenarios. The Gaussian filter, the bilateral Gaussian filter and the narrow-range filter use the same number of iterations ($iter=2$). The curvature flow filter uses more iterations ($iter=80$) to obtain flat surface results \DIFdelbegin \DIFdel{, }\DIFdelend at the cost of performance loss.
@@ -636,14 +707,22 @@ png}%DIFDELCMD < }
 
 The relationship between particle number and corresponding frame rate under different methods is shown in Fig.\ref{fig:figure8}. \DIFdelbegin \DIFdel{Although }\DIFdelend \DIFaddbegin \DIFadd{We can see that the anisotropic transformation barely affects the efficiency of the whole screen space rendering pipeline. And although }\DIFaddend the curvature flow filter can achieve better surface effects with a higher number of iterations, its rendering time also increases. In contrast, the narrow-range filter method not only gives a better surface effect \DIFdelbegin \DIFdel{, }\DIFdelend but also keeps the rendering time almost linearly increased with respect to the number of particles.
 
+% \begin{figure}[!t]
+%     % \setlength{\abovecaptionskip}{1mm}
+%     % \setlength{\belowcaptionskip}{-5mm}
+%     \centering
+%     \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\linewidth]{figs/data1.png}
+% %DIFDELCMD <     %%%
+% \DIFdelendFL \DIFaddbeginFL \includegraphics[width=\linewidth]{figs/FPS.png}
+%     \DIFaddendFL \caption{Frame rate comparison of different algorithms.}
+%     \label{fig:figure8}
+% \end{figure}
 \begin{figure}[!t]
     % \setlength{\abovecaptionskip}{1mm}
     % \setlength{\belowcaptionskip}{-5mm}
     \centering
-    \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\linewidth]{figs/data1.png}
-%DIFDELCMD <     %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\linewidth]{figs/FPS.png}
-    \DIFaddendFL \caption{Frame rate comparison of different algorithms.}
+    \includegraphics[width=\linewidth]{figs/FPS.png}
+    \caption{Frame rate comparison of different algorithms.}
     \label{fig:figure8}
 \end{figure}
 
