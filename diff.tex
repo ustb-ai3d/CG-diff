@@ -195,9 +195,37 @@ However, we find that the unevenness of fluid surfaces caused by the distributio
 %DIF <  \caption{The schematic diagram of surface processing in screen space rendering method.}
 %DIF <  \label{fig:figure1}
 %DIF <  \end{figure}
-\DIFaddbegin \begin{figure}[!t]
-    %DIF >  \setlength{\abovecaptionskip}{1mm}
-    %DIF >  \setlength{\belowcaptionskip}{-5mm}
+
+% \begin{figure}[!t]
+%     %DIF >  \setlength{\abovecaptionskip}{1mm}
+%     %DIF >  \setlength{\belowcaptionskip}{-5mm}
+%     \centering
+%     \subfigure[isotropic] {
+%     \includegraphics[width=0.47\linewidth]{figs/isotropic.png}
+%     }    
+%     \subfigure[anisotropic] {
+%     \includegraphics[width=0.47\linewidth]{figs/anisotropic.png}
+%     } 
+%     \caption{\DIFaddFL{Comparison of isotropic and anisotropic fluid particles.}}
+%     \label{fig:figure3}
+% \end{figure}
+
+% \begin{figure}[!t]
+%     %DIF >  \setlength{\abovecaptionskip}{1mm}
+%     %DIF >  \setlength{\belowcaptionskip}{-5mm}
+%     \centering
+%     \subfigure[isotropic] {
+%     \includegraphics[width=0.22\textwidth]{figs/figure5_1_new.png}
+%     }    
+%     \subfigure[anisotropic] {
+%     \includegraphics[width=0.22\textwidth]{figs/figure5_2_new.png}
+%     } 
+%     \caption{\DIFaddFL{Experimental comparison of isotropy and anisotropy in the dam break scenario.}}
+%     \label{fig:figure4}
+% \end{figure}
+\begin{figure}[!t]
+    % \setlength{\abovecaptionskip}{1mm}
+    % \setlength{\belowcaptionskip}{-5mm}
     \centering
     \subfigure[isotropic] {
     \includegraphics[width=0.47\linewidth]{figs/isotropic.png}
@@ -205,13 +233,13 @@ However, we find that the unevenness of fluid surfaces caused by the distributio
     \subfigure[anisotropic] {
     \includegraphics[width=0.47\linewidth]{figs/anisotropic.png}
     } 
-    \caption{\DIFaddFL{Comparison of isotropic and anisotropic fluid particles.}}
+    \caption{Comparison of isotropic and anisotropic fluid particles.}
     \label{fig:figure3}
 \end{figure}
 
 \begin{figure}[!t]
-    %DIF >  \setlength{\abovecaptionskip}{1mm}
-    %DIF >  \setlength{\belowcaptionskip}{-5mm}
+    % \setlength{\abovecaptionskip}{1mm}
+    % \setlength{\belowcaptionskip}{-5mm}
     \centering
     \subfigure[isotropic] {
     \includegraphics[width=0.22\textwidth]{figs/figure5_1_new.png}
@@ -219,10 +247,9 @@ However, we find that the unevenness of fluid surfaces caused by the distributio
     \subfigure[anisotropic] {
     \includegraphics[width=0.22\textwidth]{figs/figure5_2_new.png}
     } 
-    \caption{\DIFaddFL{Experimental comparison of isotropy and anisotropy in the dam break scenario.}}
+    \caption{Experimental comparison of isotropy and anisotropy in the dam break scenario.}
     \label{fig:figure4}
 \end{figure}
-\DIFaddend 
 
 \section{Real-time Screen Space Fluid Rendering}
 Fluid rendering in the screen space is performed by drawing the 3D fluid directly into the 2D screen without generating surface meshes, as shown in Fig.\ref{fig:figure1}, and is closely related to image processing algorithms~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
@@ -251,6 +278,7 @@ The Gaussian convolution can obtain smooth particle depth information. However, 
 
 \begin{figure*}[!t]
 \centering
+
 \DIFdelbeginFL %DIFDELCMD < \includegraphics[scale=.6]{figs/figure2_b.png}
 %DIFDELCMD < %%%
 \DIFdelendFL \DIFaddbeginFL \includegraphics[width=\linewidth]{figs/figure2_b.pdf}
@@ -266,18 +294,25 @@ Fluid distribution in the real world is not uniform, so it is necessary to calcu
 \end{equation}
 where $n$ represents all fluid particles, $\mathbf{\hat{x}}_j$ corresponds to the projection position of particle $\mathbf{{x}}_j$ in the screen space. This calculation is correct when the particles do not overlap. Because of the incompressibility of the SPH method (particles seldom overlap), the thickness information can be calculated by Eqn.~\ref{con:equa3}.
 
-\DIFaddbegin \begin{figure}[!t]
-\centering
-\begin{overpic}
-    [\DIFaddFL{width=}\linewidth]{\DIFaddFL{figs/surface_processing.png}}
-    \put(50,88) {\DIFaddFL{camera}}
-    \put(55,63) {\DIFaddFL{foreground surface}}
-    \put(5,37) {\DIFaddFL{background surface}}
-    \put(63,5) {\DIFaddFL{refraction direction}}
-\end{overpic}
-\caption{\DIFaddFL{The schematic diagram of surface processing in screen space rendering method.}}
-\label{fig:figure1}
-\end{figure}
+% \DIFaddbegin \begin{figure}[!t]
+% \centering
+% \begin{overpic}
+%     [\DIFaddFL{width=}\linewidth]{\DIFaddFL{figs/surface_processing.png}}
+%     \put(50,88) {\DIFaddFL{camera}}
+%     \put(55,63) {\DIFaddFL{foreground surface}}
+%     \put(5,37) {\DIFaddFL{background surface}}
+%     \put(63,5) {\DIFaddFL{refraction direction}}
+% \end{overpic}
+% \caption{\DIFaddFL{The schematic diagram of surface processing in screen space rendering method.}}
+% \label{fig:figure1}
+% \end{figure}
+
+% \begin{figure*}[!t]
+% \centering
+% \includegraphics[width=\linewidth]{figs/figure2_b.pdf}
+% \caption{Schematic flow diagram of screen space rendering pipeline for fluid rendering: First, transform the fluid particles to the screen space and obtain the depth information and thickness information. Second, post-process the depth image, reconstruct normal on the depth image and render the fluid surface using normal and thickness information.}
+% \label{fig:figure2}
+% \end{figure*}
 
 \DIFaddend \subsection{Normal Reconstruction and Surface Shading}
 After obtaining the vertex coordinates in camera space, the normal needs to be reconstructed from the coordinates to handle light reflection and refraction on the surface. The partial derivatives are calculated according to the finite difference method.
