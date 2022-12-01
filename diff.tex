@@ -1,7 +1,7 @@
 %% This is file `cag-template.tex',
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /dir/cag-template_old.tex   Wed Nov 30 23:33:35 2022
-%DIF ADD /dir/cag-template.tex       Wed Nov 30 23:33:35 2022
+%DIF DEL /dir/cag-template_old.tex   Thu Dec  1 22:44:46 2022
+%DIF ADD /dir/cag-template.tex       Thu Dec  1 22:44:46 2022
 %% 
 %% Copyright 2018 Elsevier Ltd
 %% 
@@ -140,7 +140,7 @@
 
 \begin{abstract}
 %%%
-In this paper we propose a real-time fluid rendering method based on the screen space rendering scheme for particle-based fluid simulation. Our method applies anisotropic transformations to the point sprites to stretch the point sprites along appropriate axes, obtaining smooth fluid surfaces based on the weighted principal components analysis of the particle distribution. Then we combine the processed anisotropic point sprite information with popular screen space filters like curvature flow and narrow-range filters to process the depth information. Experiments show that the proposed method can efficiently resolve the issues of jagged edges and unevenness on the surface that existed in previous methods while preserving sharp high-frequency details.
+In this paper we propose a real-time fluid rendering method based on the screen space rendering scheme for particle-based fluid simulation. Our method applies anisotropic transformations to the point sprites to stretch the point sprites along appropriate axes, obtaining smooth fluid surfaces based on the weighted principal components analysis of the particle distribution. Then we combine the processed anisotropic point sprite information with popular screen space filters like curvature flow and narrow-range filters to process the depth information. Experiments show that the proposed method can efficiently resolve the issues of jagged edges and unevenness on the surface that existed in previous methods while preserving sharp high-frequency\DIFdelbegin \DIFdel{details}\DIFdelend .
 %%%%
 \end{abstract}
 
@@ -269,7 +269,7 @@ where $n$ represents all fluid particles, $\mathbf{\hat{x}}_j$ corresponds to th
 \DIFaddbegin \begin{figure}[!t]
 \centering
 \begin{overpic}
-    [width=\linewidth]{figs/surface_processing.png}
+    [\DIFaddFL{width=}\linewidth]{\DIFaddFL{figs/surface_processing.png}}
     \put(50,88) {\DIFaddFL{camera}}
     \put(55,63) {\DIFaddFL{foreground surface}}
     \put(5,37) {\DIFaddFL{background surface}}
