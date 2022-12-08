@@ -1,442 +1,671 @@
-%% This is file `cag-template.tex',
-%% 
-%% Copyright 2018 Elsevier Ltd
-%% 
-%% This file is part of the 'Elsarticle Bundle'.
-%% ---------------------------------------------
-%% 
-%% It may be distributed under the conditions of the LaTeX Project Public
-%% License, either version 1.2 of this license or (at your option) any
-%% later version.  The latest version of this license is in
-%%    http://www.latex-project.org/lppl.txt
-%% and version 1.2 or later is part of all distributions of LaTeX
-%% version 1999/12/01 or later.
-%% 
-%% The list of all files belonging to the 'Elsarticle Bundle' is
-%% given in the file `manifest.txt'.
-%% 
-%% Template article for Elsevier's document class `elsarticle'
-%% with harvard style bibliographic references
-%%
-%% $Id: cag-template.tex 151 2018-11-22 04:42:39Z rishi $
-%%
-%% Use the options `twocolumn,final' to obtain the final layout
-%% Use `longtitle' option to break abstract to multiple pages if overfull.
-%% For Review pdf (With double line spacing)
-%\documentclass[times,twocolumn,review]{elsarticle}
-%% For abstracts longer than one page.
-%\documentclass[times,twocolumn,review,longtitle]{elsarticle}
-%% For Review pdf without preprint line
-%\documentclass[times,twocolumn,review,nopreprintline]{elsarticle}
-%% Final pdf
-%\documentclass[times,twocolumn,final]{elsarticle}
-%%
-\documentclass[times,twocolumn,final]{elsarticle}
-%%
+\documentclass[VANCOUVER,STIX1COL]{WileyNJD-v2}
 
-
-%% Stylefile to load CAG template
-\usepackage{cag}
-\usepackage{framed,multirow}
-
-%% The amssymb package provides various useful mathematical symbols
-\usepackage{amssymb}
-\usepackage{latexsym}
-
-% Following three lines are needed for this document.
-% If you are not loading colors or url, then these are
-% not required.
-\usepackage{url}
-\usepackage{xcolor}
-\definecolor{newcolor}{rgb}{.8,.349,.1}
-
-\usepackage{hyperref}
-
-\usepackage[switch,pagewise]{lineno} %Required by command \linenumbers below
-\usepackage{booktabs}
-\usepackage{overpic}
 \usepackage{subfigure}
-\usepackage{amsmath}
+\usepackage{overpic}
+\usepackage{makecell}
+\usepackage{color}
 
-\journal{Computers \& Graphics}
+\articletype{Article Type}%
+
+\received{26 April 2016}
+\revised{6 June 2016}
+\accepted{6 June 2016}
+
+\raggedbottom
 
 \begin{document}
 
-\verso{Preprint Submitted for review}
+% \title{This is the sample article title\protect\thanks{This is an example for title footnote.}}
 
-\begin{frontmatter}
+\title{Spatial Adaptivity with Boundary Refinement for SPH Fluid Simulation}
 
-\title{Anisotropic screen space rendering for particle-based fluid simulation
-% \tnoteref{tnote1}
-}%
-% \tnotetext[tnote1]{Only capitalize first
-% word and proper nouns in the title.}
+\author[1]{Yanrui Xu}
 
-\author{\snm{Anonymous}}
-% \author[1]{First Author Given Name \snm{Surname}\corref{cor1}}
-% \cortext[cor1]{Corresponding author: 
-%   Tel.: +0-000-000-0000;  
-%   fax: +0-000-000-0000;}
-% \emailauthor{example@email.com}{Corresponding Author Name}
-%\ead{example@email.com}
-    
-% \author[2]{Second Author Given Name \snm{Surname}\fnref{fn1}}
-% \fntext[fn1]{Footnote 1.}  
+\author[1]{Chongming Song}
 
-% \address[1]{Address, City, Postcode, Country}
-% \address[2]{Address, City, Postcode, Country}
+\author[1]{Xiaokun Wang*}
 
-%\received{1 February 2017}
-\received{\today}
-%%%% Do not use the below for submitted manuscripts
-%\finalform{28 March 2017}
-%\accepted{2 April 2017}
-%\availableonline{15 May 2017}
-%\communicated{S. Sarkar}
+\author[2,3]{Xiaojuan Ban*}
+
+\author[1]{Jiamin Wang}
+
+\author[1]{Yalan Zhang}
+
+\author[4]{Jian Chang}
+
+\authormark{Yanrui Xu \textsc{et al}}
 
 
-\begin{abstract}
-%%%
-This paper proposes a real-time fluid rendering method based on the screen space rendering scheme for particle-based fluid simulation. Our method applies anisotropic transformations to the point sprites to stretch the point sprites along appropriate axes, obtaining smooth fluid surfaces based on the weighted principal components analysis of the particle distribution. Then we combine the processed anisotropic point sprite information with popular screen space filters like curvature flow and narrow-range filters to process the depth information. Experiments show that the proposed method can efficiently resolve the issues of jagged edges and unevenness on the surface that existed in previous methods while preserving sharp high-frequency details.
-%%%%
-\end{abstract}
+\address[1]{\orgdiv{School of Computer and Communication Engineering}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
 
-\begin{keyword}
-%% MSC codes here, in the form: \MSC code \sep code
-%% or \MSC[2008] code \sep code (2000 is the default)
-%\MSC 41A05\sep 41A10\sep 65D05\sep 65D17
-%% Keywords
-\KWD Real-time rendering\sep Screen space rendering\sep Fluid simulation\sep Smoothed particle hydrodynamics
-\end{keyword}
+\address[2]{\orgdiv{Institute of Artificial Intelligence}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
 
-\end{frontmatter}
+\address[3]{\orgdiv{Beijing Key Laboratory of Knowledge Engineering for Materials Science},
+\orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
 
-\linenumbers
+\address[4]{
+\orgname{Bournemouth University}, \orgaddress{\state{Poole}, \country{United Kingdom}}}
 
-%% main text
+\corres{*Xiaokun Wang, *Xiaojuan Ban, University of Science and Technology Beijing. \email{wangxiaokun@ustb.edu.cn, banxj@ustb.edu.cn}}
+
+\fundingInfo{Horizon 2020-Marie Skłodowska-Curie Action-Individual Fellowships (No.895941), National Key Research and Development Program of China (No.2020YFB0704501), National Natural Science Foundation of China (No.61873299), Key Research and Development Project of Hainan Province (No.ZDYF2020031)}
+
+% \presentaddress{This is sample for present address text this is sample for present address text}
+
+\abstract[Summary]{% Brief of adaptivity
+Fluid simulation is well-known for being visually stunning while computationally expensive. Spatial adaptivity can effectively ease the computational cost by discretizing the simulation space with varying resolutions.
+% Previous
+% Defects
+Adaptive methods nowadays mainly focus on the mechanism of refining the fluid surfaces to obtain more vivid splashes and wave effects. But such techniques hinder further performance gain under the condition where most of the vast fluid surface is tranquil. Moreover, energetic flow beneath the surface cannot be adequately captured with the interior of the fluid still being simulated under coarse discretization.
+% Proposed method
+This paper proposes a novel boundary-distance based adaptive method for Smoothed Particle Hydrodynamics (SPH) fluid simulation. The signed-distance field constructed with respect to the coupling boundary is introduced to determine particle resolution in different spatial positions. The resolution is maximal within a specific distance to the boundary and decreases smoothly as the distance increases until a threshold is reached. The sizes of the particles are then adjusted towards the resolution via splitting and merging. Additionally, a wake flow preservation mechanism is introduced to keep the particle resolution at a high level for a period of time after a particle flows through the boundary object to prevent the loss of flow details. 
+% Experiments
+Experiments show that our method can refine fluid-solid coupling details more efficiently and effectively capture dynamic effects beneath the surface.}
+
+\keywords{computer animation, fluid simulation, spatial adaptivity, boundary handling}
+
+\jnlcitation{\cname{%
+\author{Y.R. Xu}, 
+\author{C.M. Song}, 
+\author{X.K. Wang}, 
+\author{X.J. Ban},
+\author{J.M. Wang},
+\author{Y.L. Zhang}, and 
+\author{J. Chang}} (\cyear{2022}), 
+\ctitle{Spatial Adaptivity with Boundary Refinement for SPH Fluid Simulation}, \cjournal{Computer Animation and Virtual Worlds}, \cvol{2022;00:1--12}.}
+
+\maketitle
+
+% \footnotetext{\textbf{Abbreviations:} ANA, anti-nuclear antibodies; APC, antigen-presenting cells; IRF, interferon regulatory factor}
+
+\begin{figure*}[htbp]
+
+\centering
+\subfigure[Surface-based refinement]{
+\centering
+\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/surface.png}
+\put (70,51) {refined}
+\end{overpic}
+\label{fig:refine_surface}}
+\subfigure[Our boundary refinement.]{
+\centering
+\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/bound.png}
+\put (2,52) {refined}
+\put (65,59) {not refined}
+\end{overpic}
+\label{fig:refine_bound}}
+\subfigure[Ours + surface-based.]{
+\centering
+\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/union.png}
+\put (60,56) {refined}
+\end{overpic}
+\label{fig:refine_union}}
+\vspace{-0.7\baselineskip}
+\caption{Contrary to the previous surface-based refinement method (a), our method (b) refines fluid particles near boundary objects to allow the fine-scale fluid-boundary coupling to enhance boundary coupling details. Our method can also be combined with the surface-based method to refine near the boundary and the surface (c).}
+\label{fig:refine}
+
+\end{figure*}
+
 \section{Introduction}
-\label{sec1}
+Fluid simulation plays an essential role in visual effects, for the physical-based result can produce magnificent eye-catching effects to maximize the sense of reality. Nevertheless, higher demand for simulation details usually means the rapid growth of computational cost due to the need for the finer discretization of multidimensional space and time. Though the choice of time step (\emph{temporal adaptivity}) can be readily adapted using Courant
+-Friedrichs-Lewy (CFL) condition, the mechanism of \emph{spatial adaptivity} can still be further exploited considering variable conditions for better efficiency. The spatial adaptivity mechanism enables achieving exquisite fluid behaviours with more affordable expenses by optimizing the interval of sampling points to refine local areas with pertinence.
 
-% \begin{equation}
-% \left[\begin{array}{ccc}
-% C^r & & 0 \\
-% & & \vdots \\
-% 0 & \cdots & 1
-% \end{array}\right]
-% \end{equation}
+Nowadays, research on spatial adaptivity for Lagrangian fluid simulation mainly targets surface-based optimization, aiming at refining the surface details like splashes, waves and thin films to enrich the visual effects. Horvath and Solenthaler~\cite{Horvath13} use a higher resolution for particles within a certain distance to the free surface of the fluid; Winchenbach et al.~\cite{Winchenbach17} make the desired size of particles increase smoothly with the distance to the surface.
 
-The physics based fluid simulation has great application value in computer-aided Engineering (CAE) and Computer Graphics (CG) fields.
-Among all the simulation methods, the \emph{particle-based} approaches like \emph{Smoothed Particle Hydrodynamics} (SPH) have received much attention for their algorithmic efficiency and application flexibility~\cite{Ihmsen14}. 
-However, for the visualization of particle-based simulation results, tracing surfaces for particle-represented fluid has been the computation bottleneck of the whole process. Hence, how to efficiently visualize the simulated fluid while maintaining proper fidelity has become a hot research topic.
+However, the surface-based strategy has the disadvantage of an inflexible intervention mechanism, which causes low computational efficiency and the failure to enhance specific dynamic areas. On the wide fluid surface, the area with the most high-frequency details is often the part where the fluid is coupled with other objects, such as a boat sailing across the water surface, arousing the waves around and behind the body. Meanwhile, the boat's rotating propeller below the surface can constantly transmit kinetic energy into the water, further producing splashes to the surface. When such a scenario is simulated using coarse discretization with surface-based refinement, the vast and calm surface brings a large computational burden, causing computational resources to be wasted in these unimportant areas. Also, the energy dissipation from the propeller area cannot be restrained effectively. 
 
-Instead of directly tracing the particle surface and constructing the polygon mesh, the \emph{screen space rendering} approach avoids these expensive processes by only generating the surface with respect to the camera using the depth and thickness information. This way, particles are handled as \emph{point sprites}, 2D textures facing the camera (usually in a round shape). The edges between textures are smoothed out to produce fluid surface effects for the screen\cite{ref:ref2}. This approach avoids the expensive mesh construction procedure, making real-time fluid simulation viable for gaming and state-of-the-art virtual reality applications\cite{ref:ref3}. 
+To conduct spatial adaptivity with more flexibility and efficiency, we propose a novel adaptivity method with boundary refinement for SPH fluid simulation, where particle resolution increases as the distance to the interested boundary object decreases (see Fig.\ref{fig:refine}). The sizes of the particles are adjusted towards the resolution via splitting and merging. Moreover, a wake flow preservation mechanism is introduced to retain the refined resolution for a specific period after a particle flows through the boundary object to prevent the loss of flow details. The results show that our method can enrich fluid details more economically and produce more accurate visual effects in contrast to the surface-based strategy.
 
-However, several inherited artefacts of screen space rendering hinder its further exploitation and integration into a broader range of applications. For example, despite subsequent improvements in the original method, surfaces extracted from particles are uneven and often too blurred, making it impossible to distinguish a clear boundary between the foreground and the background. Inspired by Yu and Turk~\cite{yu2013reconstructing}, we propose an anisotropic transformation scheme for point texture, which is applied before filtering the depth image to generate smooth surfaces in discontinuous regions and, at the same time, preserve vivid details.
+\section{Related Work}
+Methods for spatial adaptivity in fluid simulation depend heavily on the fluid simulation approaches on which they are based. For Eulerian approaches that simulate the fluid with grids, a standard scheme uses octrees to split some grids into finer grids \cite{Ando20}. Meanwhile, tilted grids can also be used \cite{Xiao20} to avoid numerical issues. For particle-based Lagrangian approaches, the sizes of particles are adaptively adjusted \cite{Winchenbach17}. For hybrid approaches that inherit the traits of both Eulerian and Lagrangian methods, one can improve the efficiency by limiting the regions where particles are used \cite{Sato18} or combining octrees with an adjustable number of particles based on regional characteristics \cite{Nakanishi20}.
+
+SPH~\cite{Koschier19} is a Lagrangian fluid simulation method that possesses the advantages of natural mass conservation and simplicity of advection computation. For adaptive SPH, Adams et al.~\cite{Adams07} resampled particles with different radii based on the size of local geometric features. Solenthaler and Gross~\cite{Solenthaler11} introduced a two-scale mechanism that coupled a low-resolution simulation with a high-resolution one, and particles were directly inserted or deleted at the boundary between the two resolutions, which broke the mass-preserving condition. Horvath and Solenthaler~\cite{Horvath13} extended the previous work~\cite{Solenthaler11} to support multiple levels of resolution and conserve mass. Orthmann and Kolb~\cite{Orthmann12} increased the spatial resolution by splitting particles using a $1:2$ pattern and applied a temporal blending technique to achieve a smooth particle splitting process by maintaining continuous physical fields. Vacondio et al.~\cite{Vacondio16} used the variational principle to search for an optimized splitting pattern that minimized density error. They also introduced a coalescing scheme to realize the dynamic reduction of resolution. Winchenbach et al.~\cite{Winchenbach17} achieved adaptivity in incompressible SPH by introducing a new split-merge mechanism that produced an approximately continuous resolution based on the distance from the free surface of the fluid. Winchenbach and Kolb~\cite{Winchenbach21} later proposed a method to optimize the density error from the splitting process into an arbitrary number of particles by optimizing the position and mass of the split particles to increase the stability of the previous method \cite{Winchenbach17}.
+
+\begin{figure*}[t]
+
+\centering
+\subfigure{
+\centering
+\includegraphics[width=0.31\textwidth]{figure/rod/fine210.png}
+}
+\subfigure{
+\centering
+\includegraphics[width=0.31\textwidth]{figure/rod/mark215.png}
+}
+\subfigure{
+\centering
+\includegraphics[width=0.31\textwidth]{figure/rod/surface215.png}
+}
+
+\setcounter{subfigure}{0}
+\subfigure[High-resolution ($r=0.063\textrm{m}$).]{
+\centering
+\includegraphics[width=0.31\textwidth]{figure/rod_side/fine210.png}
+\label{fig:rod_fine}
+}
+\subfigure[Ours, $\tau^{max}_{cylinder} = 21$.]{
+\centering
+\includegraphics[width=0.31\textwidth]{figure/rod_side/mark215.png}
+\label{fig:rod_mark}
+}
+\subfigure[Surface-based~\cite{Winchenbach17}.]{
+\centering
+\includegraphics[width=0.31\textwidth]{figure/rod_side/surface215.png}
+\label{fig:rod_surface}
+}
+\vspace{-0.7\baselineskip}
+\caption{
+Cylinder moving experiment, where the cylinder moves horizontally in the tank. The first row is the vertical view; the second row is a cross-section of the side view. Our method better reproduces the jagged (vertical view) and curved (side view) wave patterns in the high-resolution simulation. Adaptive methods use max particle size $r_{base} = 0.2$ and $\alpha = 32$.
+}
+\label{fig:rod}
+
+\end{figure*}
+
+A popular approach for boundary handling of SPH fluids is particle-based methods that represent the solid objects with particles \cite{Akinci12, Band18b}. However, for fluid simulation using adaptive methods, particle-based boundary representation may encounter the problem of size discrepancy between fluid and boundary particles. Another approach for boundary handling is the boundary integral method. Fujisawa et al.~\cite{Fujisawa15} used empirically derived functions to handle triangle-mesh boundaries. Koschier and Bender~\cite{Koschier17} precomputed the integral of boundary on a fixed grid, where the precomputing was rather expensive. Bender et al.~\cite{Bender19} improved this method by precalculating a volume term. Chang et al.~\cite{Chang20} integrated computer-aided design (CAD) mesh file boundary representation into SPH by converting the volume integral to surface integral. Winchenbach et al.~\cite{Winchenbach20} proposed a boundary integral method that supports adaptive SPH, which approximated the boundary integral locally at each particle with a plane based on the signed-distance field of the boundary object. Though the boundary handling for adaptive SPH has been well-studied, more attention needs to be paid to designing the adaptive mechanism dedicated to the fluid-solid boundary. So in this paper, we present a spatial adaptivity method with the boundary refinement mechanism for SPH fluid simulation to capture detailed interaction effects.
+
+\section{Adaptive SPH}
+
+\subsection{SPH Basics}
+
+To simulate fluid behaviour, the SPH method~\cite{Koschier19} describes physical fluid motion according to the Navier-Stokes equation:
+\begin{equation}
+    \rho \frac{D\mathbf{v}}{Dt}=-\nabla p + \rho \upsilon \nabla^2 \mathbf{v} + \mathbf{f}_{ext},
+\label{equ-2}
+\end{equation}
+where the change rate of the velocity $\mathbf{v}$ is determined by pressure $p$, density $\rho$, dynamic viscosity $\upsilon$ and external body force $\mathbf{f}_{ext}$.
+
+To perform numerical computation, SPH discretizes the fluid into particles and calculates the physical attributes of each particle using the attributes from neighbouring particles and a kernel function $W$, as:
+\begin{equation}
+    A_i = \sum_j A_j \frac{m_j}{\rho_j} W(\mathbf{x}_i - \mathbf{x}_j, h_{ij}),
+    \label{eq:sph_base}
+\end{equation}
+where $A$ is the physical attribute. $i$ is the current particle. $j$ denotes neighbouring particles of $i$, whose distance to $i$ is smaller than the support radius $h_{ij}$. $h_{ij} = (h_i + h_j) / 2$, where $h_i = 2r_i$ and $r$ is the particle diameter. $m$ is mass. $\mathbf{x}$ is position. This paper uses a cubic spline function for the kernel function $W$. Any value followed by the subscript $i$ or $j$ means the value of that particle.
+
+According to Eqn.~\ref{eq:sph_base}, density located at particle $i$ can be approximated as:
+\begin{equation}
+    \rho_i = \sum_j m_j W_{ij},
+    \label{eq:sph_density}
+\end{equation}
+where $W_{ij}$ is short for $W(\mathbf{x}_i - \mathbf{x}_j, h_{ij})$.
+
+Using the state equation from Becker and Teschner~\cite{Becker07}, the pressure at the particle $i$ can be calculated as:
+\begin{equation}
+    p_i = B\left(\left(\frac{\rho_i}{\rho_0}\right)^\gamma - 1\right),
+\end{equation}
+where $B = \rho_0 c_s^2 / \gamma$. $\rho_0$ is the rest density denoting the density of the fluid without any compression. $c_s$ is the speed of sound in the fluid, which is often set to $100\textrm{m}/\textrm{s}$. $\gamma$ is set to $\gamma = 7$ for weakly compressible fluids.
+
+The pressure force on the particle can then be computed as:
+\begin{equation}
+    \mathbf{F}_i^p = -m_i \sum_j m_j \left(
+    \frac{p_i}{\rho_i^2} + \frac{p_j}{\rho_j^2}
+    \right)\nabla W_{ij}.
+\end{equation}
+
+The viscosity force can be approximated as follows:
+\begin{equation}
+    \mathbf{F}_i^{vis} = 
+    m_i \sum_j m_j \upsilon \left(\frac{\mathbf{v}_{ij}\cdot\mathbf{x}_{ij}}{|\mathbf{x}_{ij}|^2 + 0.01h_i^2}\right)\nabla W_{ij},
+    % \left\{
+    % \begin{array}{ll}
+    %     m_i \sum_j m_j \upsilon \left(\frac{\mathbf{v}_{ij}\cdot\mathbf{x}_{ij}}{|\mathbf{x}_{ij}|^2 + 0.01h_i^2}\right)\nabla W_{ij} & \mathbf{v}_{ij}\cdot\mathbf{x}_{ij} < 0   \\
+    %     \mathbf{0} & \mathbf{v}_{ij}\cdot\mathbf{x}_{ij} < 0 
+    % \end{array}
+    % \right.,
+    \label{eq:vis}
+\end{equation}
+where $\mathbf{v}_{ij} = \mathbf{v}_i - \mathbf{v}_j$ is the relative velocity between $i$ and $j$. $\mathbf{x}_{ij} = \mathbf{x}_i - \mathbf{x}_j$.
+
+The total force on a particle can be expressed as:
+\begin{equation}
+    \mathbf{F}_i = \mathbf{F}_i^p + \mathbf{F}_i^{adv} + \mathbf{F}_i^{bound},
+\end{equation}
+where $\mathbf{F}^{adv}$ is the advection force consisting of gravity $\mathbf{G}$, viscosity force $\mathbf{F}^{vis}$, and surface tension~\cite{Akinci13}. $\mathbf{F}^{bound}$ is the force from the boundary to the fluid, which is explained in Section \ref{sec:boundary}. The velocity and position of the particle are updated each time step with $\mathbf{v}_i := \mathbf{v}_i + \Delta t \mathbf{F}_i / m_i$, $\mathbf{x}_i := \mathbf{x}_i + \Delta t \mathbf{v}_i$, where $\Delta t$ is the length of the time step.
+
+\subsection{Split-merge Based Adaptivity}
+
+Winchenbach et al.~\cite{Winchenbach17} achieved SPH adaptivity by splitting and merging particles with strict conservation of the total fluid mass. In this method, the desired size for each particle is computed using a sizing function based on the distance to the fluid's free surface:
+\begin{equation}
+    m_i^{opt} = m^{base}\left(
+    \frac{\mathrm{min}(|\phi_i^f|,|\phi_{max}|)}{|\phi_{max}|}
+    (1 - \alpha) + \alpha
+    \right),
+    \label{eq:m_opt}
+\end{equation}
+where $m^{opt}$ is the optimal mass that is the desired mass for the particle. $\alpha$ is the adaptivity ratio that denotes the largest mass ratio allowed between particles. $m^{base}$ is the largest allowed particle mass. $\phi^f$ is the distance to the fluid's free surface similar to Horvath and Solenthaler \cite{Horvath13}, which is negative inside the fluid. $\phi_{max}$ is the max distance to the surface within which particles are refined. Eqn.~\ref{eq:m_opt} ensures that the optimal mass decreases linearly and smoothly as the distance to the free surface decreases.
+
+\begin{figure}[b]
+    \centering
+    \subfigure[Splitting]{
+        \includegraphics[width=0.29\columnwidth]{figure/split_schem/split.png}
+    }
+    \subfigure[Merging]{
+        \includegraphics[width=0.29\columnwidth]{figure/split_schem/merge.png}
+    }
+    \subfigure[Redistribution]{
+        \includegraphics[width=0.29\columnwidth]{figure/split_schem/redistribute.png}
+    }
+    \vspace{-0.7\baselineskip}
+    \caption{Schematic diagram of particle splitting, merging and redistribution.}
+    \label{fig:split_schem}
+\end{figure}
+
+Splitting or merging is applied to each particle to adjust its mass towards $m^{opt}$ if necessary. To determine the operation each particle needs, the particles are classified into five categories according to the ratio between the particle's mass and the optimal mass, $m_i^{rel} = m_i / m_i^{opt}$. The five classes are $S$ ($m_i^{rel} < 0.5$), $s$ ($0.5 \leq m_i^{rel} \leq 0.9$), $o$ ($0.9 < m_i^{rel} < 1.1$), $l$ ($1.1 \leq m_i^{rel} \leq 2$), and $L$ ($2 < m_i^{rel}$)
+
+Particles of class $L$ undergo splitting to become multiple smaller particles (Section \ref{sec:split}); particles of class $s$  are merged into nearby $s$ or $S$ particles by distributing all of its mass to nearby particles (Section \ref{sec:merge}); and particles of class $l$ redistribute their excess mass to nearby $s$ particles similarly to merging (Section \ref{sec:merge}). The process is shown schematically in Fig. \ref{fig:split_schem}.
+
+\subsubsection{Splitting}
+\label{sec:split}
+Particles of class $L$ are split into $n$ children particles where $n = \lceil m_i / m_i^{opt} \rceil$. The mass and positions of children particles are determined using precomputed split patterns. They are further optimized online by solving a minimization problem on density error to reduce the error induced by splitting~\cite{Winchenbach21}. The other physical attributes of children particles are inherited from their parents.
+
+\subsubsection{Merging and Redistribution}
+\label{sec:merge}
+Particles of class $s$ undergo merging, distributing all of their mass to nearby $s$ or $S$ particles, while particles of class $l$ redistribute their excess mass $m_i - m_i^{opt}$ to nearby $s$ particles. The distance between the mass-distributing particle $i$ and the mass-receiving particle $j$ must be within $h_i / 2$. The mass to distribute $m^{dist}$ is equally divided among the mass-receiving particles, while the other physical attributes are weight-averaged between $i$ and $j$ as:
+\begin{equation}
+    A_j^* = \frac{\frac{m^{dist}}{n}A_i + m_j A_j}{\frac{m^{dist}}{n} + m_j},
+\end{equation}
+where $A^*$ is the attribute's new value after redistribution, and $n$ is the number of mass-receiving particles.
+
+\subsubsection{Techniques to Increase Stability}
+Even with optimized splitting patterns and online optimization, splitting and merging can still introduce some density errors~\cite{Winchenbach21}. Temporal blending~\cite{Winchenbach17} and local viscosity~\cite{Winchenbach21} can increase the stability of particle splitting and merging.
+
+Temporal blending is applied to particles that recently participated in splitting, merging, or mass redistribution. The original particle $o$ before splitting or redistributing mass is stored. Then, $o$ is used to modify the density and velocity of its children or particles that received mass from it. The blended density is computed as:
+\begin{equation}
+    \rho_i^{blended} = (1 - \beta) \rho_i + \beta \rho_o,
+\end{equation}
+where $\rho_o$ is the density of the original particle, computed using Eqn.~\ref{eq:sph_density}, but ignoring the density contribution from its children. $\beta$ is a temporal blending factor that is initialized to $0.5$ for particles generated in splitting and $0.2$ for particles involved in redistribution or merging.  Then, $\beta$ is decreased by $0.1$ every time step until it reaches $0$. $\rho_i^{blended}$ is used instead of $\rho_i$ in further computations.
+The velocity of the original particle $\mathbf{v}_o$ is set to the average velocity of all its children particles and is used to update the original particle's position $\mathbf{x}_o$. The blended velocity $\mathbf{v}_i^{blended} = (1 - \beta) \mathbf{v}_i + \beta \mathbf{v}_o$ is used instead of $\mathbf{v}_i$ to update the particle's position $\mathbf{x}_i$.
+
+In the local viscosity technique, the viscosity coefficient $\upsilon$ in Eqn.~\ref{eq:vis} is multiplied with a factor $1 + 0.5(\beta_i + \beta_j)/2$ to increase the viscosity of newly split, merged or redistributed particles locally, thus increasing stability.
 
 \begin{figure*}
-    \includegraphics[width=\linewidth]{figs/figure2_b.pdf}
-    \caption{Schematic flow diagram of screen space rendering pipeline for fluid rendering: First, transform the fluid particles to the screen space and obtain the depth information and thickness information. Second, post-process the depth image, reconstruct the normal on the depth image and render the fluid surface using normal and thickness information.}
-    \label{fig:figure2}
+    \centering
+    \subfigure[Ours, $\tau_{boat}^{max}=0$.]{
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/bound.png}
+    \label{fig:ship_our}
+    }
+    \subfigure[Ours, $\tau_{boat}^{max}=1$.]{
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/mark.png}
+    \label{fig:ship_mark}
+    }
+    \subfigure[Surface-based~\cite{Winchenbach17}.]{
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/surface.png}
+    \label{fig:ship_w17}
+    }
+    \subfigure[Low-resolution.]{
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/coarse.png}
+    \label{fig:ship_2}
+    }
+    \subfigure[High-resolution.]{
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/fine.png}
+    \label{fig:ship_063}
+    }
+    \caption{Surface reconstruction result of the boat-sailing experiment: (a), (b) and (c) are adaptive simulations using max particle size $r_{base} = 0.2$ and adaptive ratio $\alpha = 32$; (d) and (e) are uniform scale simulations with $r = 0.2$ and $r = 0.063$.}
+    \label{fig:ship_reconstruct}
 \end{figure*}
 
-\section{Related work}
-Physics-based fluid simulation approaches can be mainly divided into two categories: Eulerian methods~\cite{ref:ref4}, which utilize a background grid to discretize space into cells, and meshless Lagrangian methods~\cite{ref:ref7} using particles to represent fluid volumes. For video games, virtual reality, and other real-time graphics applications, particle-based simulation such as SPH~\cite{IISPH2013,DFSPH2015,ref:ref5} is often the preferred approach due to its high efficiency and flexibility~\cite{carensac2022optimizations}. 
 
-To visualize the Lagrangian simulation results, traditionally, fluid surfaces are first traced and constructed as polygon meshes using the marching cubes algorithm~\cite{ref:ref12,ref:ref6,yang2020completely}. Meshes are then rendered as fluid. The major drawback of this two-step scheme is that the mesh generation process consumes considerable computational resources and can be pretty time-consuming for detailed results. Some researchers have improved the marching cubes algorithm to achieve real-time mapping with a tiny number of particles, but its quality is still unsatisfactory\cite{ref:ref10}.
+\section{Semi-analytic Boundary Handling}
+\label{sec:boundary}
 
-The screen space rendering technique is an alternative approach for visualizing fluid surfaces. It directly draws the fluid surfaces without the need to produce a surface mesh, sacrificing fidelity for efficiency. M{\"u}ller et al.~\cite{ref:ref2} first applied this method for fluid rendering. The choice of smoothing filter is the critical factor in determining the rendering result. As shown in Fig.~\ref{fig:figure2}, the jagged depth information derived from fluid particles needs to be smoothed to get the fluid surface. 
+A suitable boundary handling method for adaptive SPH is proposed in \cite{Winchenbach20}. This method uses a local plane to approximate the boundary at each particle. The plane approximation is based on a discrete signed-distance field (SDF) evaluated before simulation. The plane's distance $d$ to the particle equals the SDF magnitude at the particle's position, and the normal vector of the plane is the normalised SDF gradient. To approximate the boundary's contribution, the integral of the kernel function $W$ is evaluated over the region on the side of the plane that contains the boundary:
+% \begin{equation}
+%     \lambda'(d) = \left\{
+%     \begin{array}{ll}
+%         \vspace{5pt}
+%         \makecell[l]{\frac{1}{30}[81q^6 - 144q^5+ \\ 80q^3 -42q + 15]} & 0 \leq q \leq 0.5\\
+%         \vspace{5pt}
+%         \makecell[l]{\frac{-8}{15}[2q^6 - 9q^5 + 15q^4 \\ - 10q^3 + 3q - 1]} & 0.5 < q \leq 1 \\
+%         \makecell[l]{1-\lambda'(-q)} & -1 \leq q < 0 
+%     \end{array}
+%     \right.,
+% \end{equation}
+\begin{equation}
+    \lambda'(d) = \left\{
+    \begin{array}{ll}
+        \vspace{5pt}
+        \makecell[l]{\frac{1}{30}[81q^6 - 144q^5+ 80q^3 -42q + 15]} & \hspace{2em} 0 \leq q \leq 0.5\\
+        \vspace{5pt}
+        \makecell[l]{\frac{-8}{15}[2q^6 - 9q^5 + 15q^4 - 10q^3 + 3q - 1]} & \hspace{2em} 0.5 < q \leq 1 \\
+        \makecell[l]{1-\lambda'(-q)} & \hspace{2em} -1 \leq q < 0 
+    \end{array}
+    \right.,
+\end{equation}
+where $q = d / h_i$.
 
-A simple Gaussian filter for surface smoothing\cite{ref:ref2} tends to produce unwanted blur effects and is often not ideal. The bilateral Gaussian filter~\cite{ref:ref3,neto2017real} preserves sharp fluid boundaries but leads to excessive flattening of discontinuous regions. In addition, the bilateral Gaussian filter is not separable, and an approximate separation can result in visual artefacts. Troung and Yuksek~\cite{truong2018narrow} introduced a narrow-range filtering technique that smooths the depth map by directly using a narrow range of depth values. This method provides improved surface quality in surface smoothness and preserving boundaries near discontinuities.
-Recently, Oliveira and Paiva~\cite{oliveira2022narrow} solved the particle deficiency problem~\cite{truong2018narrow} by performing a particle classification mechanism. Liu et al.~\cite{liu2022real} proposed a low-cost differentiable screen-space rendering algorithm for augmented reality (AR).
+A penalty term is introduced to penalize solid penetration: $\beta(d) = 1 - d / h_i$. The penalty term is directly multiplied onto $\lambda'(d)$, obtaining the corrected value $\lambda(d) = \beta(d) \lambda'(d)$.
 
-However, we find that the unevenness of fluid surfaces caused by the distribution of particles still needs to be appropriately handled in screen space rendering. Inspired by work from Yu and Turk~\cite{yu2013reconstructing}, we provide anisotropic transformation for particle textures prior to the derivation of depth image to get a smoother fluid surface.
+% $\partial\beta(d) / \partial(d) = - 1 / h_i$
+% $\nabla\lambda'(d) = \partial\beta / \partial(d) \mathbf{n} \lambda'(d) + \beta(d)\nabla'(d)$.
 
-\section{Real-time Screen Space Fluid Rendering}
-Fluid rendering in the screen space is performed by drawing the 3D fluid directly into the 2D screen without generating surface meshes and is closely related to image processing algorithms~\cite{ref:ref3}. The schematic diagram describing the procedure of the surface rendering algorithm is shown in Fig.\ref{fig:figure2} and is detailed in the following.
+The density equation Eqn.~\ref{eq:sph_density} is then modified to consider the boundary:
+\begin{equation}
+    \rho_i = \sum_j m_j W_{ij} + \sum_b \rho_0 \lambda_i^b,
+\end{equation}
+where $b$ denotes the boundary object(s). $\lambda_i^b = \lambda(\mathrm{sdf}^b(\mathbf{x}_i))$, where $\mathrm{sdf}^b(\mathbf{x}_i)$ is the signed-distance to $b$ from the position of $i$.
 
-\subsection{Depth Information}
+The pressure at the boundary can be mirrored~\cite{Akinci12} or extrapolated~\cite{Band18b} from the pressure of nearby fluid particles. In the case of pressure mirroring, the pressure force from the boundary is:
+\begin{equation}
+    \mathbf{F}_{i \leftarrow b}^p = -m_i \rho_0 \frac{p_i}{\rho_i^2} \nabla\lambda_i^b.
+    \label{eq:bound_p}
+\end{equation}
+The friction between the fluid and solid follows the Coulomb model, which is proportional to the boundary's pressure force on the particle:
+\begin{equation}
+    \mathbf{F}_{i\leftarrow b}^{fric} = \mu ||\mathbf{F}_{i\leftarrow b}^p|| \mathbf{t}_{ib},
+    \label{eq:bound_fric}
+\end{equation}
+where $\mathbf{t}_{ib}$ is a unit vector pointing to the direction of relative tangential velocity between fluid and boundary.
 
-\paragraph{Deriving the Depth Information}
-First, the distance $z_i$ between each particle and camera pixel $i$ is calculated from the camera viewpoint~\cite{ref:ref20}.
-To obtain the fluid surface from the camera point of view, the point sprite~\cite{ref:ref21} method is used to render the particles as spheres, which allows us to extract the depth values from the video memory buffer directly.
+The total force from the boundary objects to a particle is $\mathbf{F}_i^{bound} = \sum_b (\mathbf{F}_{i \leftarrow b}^p + \mathbf{F}_{i\leftarrow b}^{fric})$.
+
+\vspace{-0.5\baselineskip}
+
+\begin{algorithm}[htb]
+\par\setlength\parindent{2em}
+\noindent \textbf{SPH Computation} 
+
+Establish neighbour list
+
+Compute and blend density
+
+Calculate advection forces
+
+Compute fluid pressure
+
+Apply boundary pressure and friction
+
+Update and blend velocity
+
+Update position
+
+\noindent \textbf{Adaptive Mechanism} 
+
+\textcolor[RGB]{71,156,233}{Compute $\phi^b$ from boundary SDF (Eqn.~\ref{eq:bound_distance})}
+
+\textcolor[RGB]{71,156,233}{Wake flow preservation (Algorithm \ref{alg:two})}
+
+\textbf{if} combine surface-based: Detect surface
+
+\textcolor[RGB]{71,156,233}{Calculate optimal mass (Eqn.~\ref{eq:refine_bound})}
+
+Splitting, merging and redistribution
+
+\caption{Boundary refinement for SPH. New steps in our method are marked blue.}
+\label{alg:one}
+\end{algorithm}
+
+\section{Adaptive Boundary Coupling}
+\label{sec:adaptive_our}
+
+The region near the boundary objects is often of interest in fluid-boundary coupling. Therefore it is desirable to use the refined particles near the important boundary objects to emphasise the details of boundary coupling. However, refining the entire surface can cause an unnecessary increase in particle number. Previous work~\cite{Winchenbach17} refines particles only near the free surface of the fluid, which cannot cover the entire boundary region and can cause detail loss in boundary coupling. Moreover, in some cases, only the region near the boundary object is of interest, such as a ship sailing on a vast water surface.
+
+Given the above problems, we propose a boundary refinement method to refine particles near specific boundary objects. The method can either be used alone to refine only near the boundary or combined with surface-based refinement schemes~\cite{Winchenbach17} to refine both the surface and the boundary regions, which is outlined in Algorithm \ref{alg:one}.
+
+To achieve particle refinement near boundary objects, we modify the sizing function of Eqn.~\ref{eq:m_opt} to consider the distance to boundary objects. Instead of optimizing particle mass according to the distance to the free surface $\phi^f$, we use the distance to boundary objects to define a value $\phi^b$ to adjust the particle size:
+\begin{equation}
+    \phi_i^b = \min\left(\max_{b^*}\left(-\mathrm{sdf}^{b^*}(\mathbf{x}_i) + \phi_{b^*}^{fine}\right), 0\right),
+    \label{eq:bound_distance}
+\end{equation}
+where $b^*$ denotes the interested boundary objects near which the fluid particles should be refined. $\phi_{b^*}^{fine}$ is a user-controlled parameter: all particles with distance to $b^*$ smaller than $\phi_{b^*}^{fine}$ are refined to the smallest scale. We use $\phi_{b^*}^{fine} = h_i$ unless explicitly mentioned.
+
+To only refine the region near the boundary, one can replace $\phi_i^f$ with $\phi_i^b$ in Eqn.~\ref{eq:m_opt}, namely:
+\begin{equation}
+    m_i^{opt} = m^{base}\left(
+    \frac{\mathrm{min}(|\phi_i^b|,|\phi_{max}|)}{|\phi_{max}|}
+    (1 - \alpha) + \alpha
+    \right),
+    \label{eq:refine_bound}
+\end{equation}
+and to refine both near the boundary region and the fluid surface, one should substitute $\phi_i^f$ in Eqn.~\ref{eq:m_opt} with $\phi_i = \max(\phi_i^b, \phi_i^f)$.
+
+\begin{figure*}[htpb]
+    \centering
+    \subfigure[Ours, $\tau_{boat}^{max} = 0$.] { 
+        \includegraphics[width=0.31\textwidth]{figure/ship/bound90.png} 
+    } 
+    \subfigure[Ours, $\tau_{boat}^{max} = 1$.] {  
+        \includegraphics[width=0.31\textwidth]{figure/ship/mark90.png} 
+    } 
+    \subfigure[Surface-based~\cite{Winchenbach17}.] {  
+        \includegraphics[width=0.31\textwidth]{figure/ship/surface90.png} 
+    } 
+    \subfigure[Low-resolution ($r = 0.2\mathrm{m}$).] { 
+        \includegraphics[width=0.31\textwidth]{figure/ship/coarse90.png} 
+    } 
+    \subfigure[High-resolution ($r = 0.063\mathrm{m}$).] { 
+        \includegraphics[width=0.31\textwidth]{figure/ship/fine90.png} 
+    } 
+    \vspace{-0.7\baselineskip}
+    \caption{Boat-sailing experiment. Adaptive methods use $r_{base} = 0.2$ and $\alpha = 32$.}
+    \label{fig:ship}
+\end{figure*}
+
+\subsection{Wake Flow Preservation by Delaying Merge}
+\label{sec:wake_flow}
+
+For scenarios where the fluid flows past the boundary object or the boundary object moves through the fluid, interesting wake flow effects are generated behind the boundary object, such as the wave behind a ship moving through water. However, when using $\phi_i^b$ to determine particle size, the wake flow loses detail because the optimal mass quickly returns to the largest value as the boundary object moves away from the particle. Consequently, the particles in the wake flow merge into larger particles, reducing the detail level.
+
+To preserve wake flow detail, we inhibit the particle merging process if the particle was recently in the vicinity of the boundary, as Algorithm \ref{alg:two} shows. For each interested boundary object $b^*$, the user can set a duration to delay merging $\tau^{max}_{b^*}$ for particles that have flowed around it, and each particle tracks its remaining duration to delay merging, denoted as $\tau_i$. Every time step, for each particle $i$ and each interested boundary object $b^*$, if the particle satisfies $\mathrm{sdf}^{b^*}(\mathbf{x}_i)\leq h_i$ , we set its remaining duration $\tau_i := \tau^{max}_{b^*}$ if the duration is not already longer. The duration is decremented at each time step by the time step length $\Delta t$ as $\tau_i:=\tau_i-\Delta t$. As long as the particle satisfies $\tau_i > 0$, $\phi^b_i$ is not allowed to decrease: if the newly computed value $\phi^{b}_{i,t}$ for the time step $t$ is lower than the previous value $\phi^{b}_{i,t-1}$, we set it to $\phi^{b}_{i,t} := \phi^{b}_{i,t-1}$. To retain the smoothness of the $\phi^b$ field, the $\phi^b_i$ values for $\tau_i > 0$ are then propagated to surrounding particles using the method from Horvath and Solenthaler \cite{Horvath13}. This approach effectively delays particle merging in the wake flow by the time length of $\tau^{max}_{b^*}$.
+
+\vspace{-0.5\baselineskip}
+
+\begin{algorithm}[htb]
+\par\setlength\parindent{2em}
+\noindent \textbf{for each} particle $i$ 
+
+\textbf{for each} interested boundary object $b^*$:
+
+\hspace{2em}\textbf{if} $\mathrm{sdf}^{b^*}(\mathbf{x}_i)\leq h_i$:
+
+\hspace{2em}\hspace{2em}set duration $\tau_i:=\mathrm{max}(\tau_{b^*}^{max},\tau_i)$
+    
+decrement duration $\tau_i:=\tau_i-\Delta t$
+    
+\textbf{if} $\tau_i>0$:
+    
+\hspace{2em}$\phi_{i,t}^b:=\mathrm{max}(\phi_{i,t}^b,\phi_{i,t-1}^b)$
+
+\caption{Wake flow preservation.}
+\label{alg:two}
+\end{algorithm}
+
+\vspace{-1.5\baselineskip}
+
+\section{Results and Discussions}
+
+To test the effectiveness and capabilities of our method, in this section, we use multiple scenarios to compare the proposed approach with simulations of uniform particle scale and the surface-based state-of-the-art SPH adaptive scheme~\cite{Winchenbach17}, which adapts resolution near the free surface.
+
+We use Weakly Compressible SPH~\cite{Becker07} for fluid simulation and the semi-analytic boundary handling method proposed in~\cite{Winchenbach20} for boundary coupling. The time step length is determined using the CFL condition with a scaling parameter of $0.5$. Surface reconstruction and rendering are conducted using Houdini and mantra with Intel Xeon Gold 5218. All simulations are coded using the Taichi programming language~\cite{hu2019taichi} and run on an NVIDIA Tesla V100 GPU.
+
+\subsection{Efficiency Comparison}
+
+Efficiency is a crucial aspect of adaptive simulation mechanisms. We show that our method can produce a similarly detailed result using fewer particles than the surface-based adaptive mechanism~\cite{Winchenbach17} and is more vivid than a low-resolution simulation. 
+
+
+\paragraph{Boat-sailing}
+
+In this scenario, a boat sails quickly across a calm fluid surface, stirring up waves and splashes around and behind the body. For the adaptive methods, we use the max particle size $r_{base} = 0.2$ and an adaptive ratio $\alpha = 32$ and choose $\phi_{b^*}^{fine} = 0$ in our method. For uniform size simulations, we perform a low-resolution and a high-resolution simulation using $r = 0.2$ and $r = 0.063$, where the particle size respectively equals the largest and smallest particle size in adaptive simulation. The particles are colour-coded according to velocity.
+
+Fig.\ref{fig:ship_reconstruct} and Fig.\ref{fig:ship} show the experimental results rendered with reconstructed fluid surface and particles, respectively. Considering the splashes around the ship, the visual level of detail is similar between the previous surface-based method~\cite{Winchenbach17} (Fig.\ref{fig:ship_w17}) and our method with or without wake flow preservation (Fig.\ref{fig:ship_mark}, \ref{fig:ship_our}). The three adaptive results are all much more detailed than the uniform low-resolution simulation (Fig.\ref{fig:ship_2}), though they may lack some detail compared to high-resolution (Fig.\ref{fig:ship_063}). For the wake flow effect, the result of our method without wake flow preservation (Fig.\ref{fig:ship_our}) is relatively coarse, but when wake flow preservation is added to our method (Fig.\ref{fig:ship_mark}), the visual detail level is comparable to the surface-based method (Fig.\ref{fig:ship_w17}).
+
+To evaluate the efficiency of the proposed method, the particle count and time consumption using different methods are plotted in Fig.\ref{fig:ship_data}. The solid lines show the particle count, and the dashed lines show the time consumption. It can be seen that the uniform low-resolution simulation uses the least particles. While our adaptive method with $\tau_{boat}^{max} = 0$ increases the particle count slightly. Further, our method with $\tau_{boat}^{max} = 1$ begins with a low particle count, which increases since frame $65$ when the boat starts moving and producing wake flow, and decreases back to a low value after frame $107$ when the boat leaves the simulated zone because the duration to delay merging for the wake flow has expired. Under both conditions, our method significantly reduces the average particle count over time compared to the surface-based method~\cite{Winchenbach17} and the high-resolution simulation. The time consumption curves follow a similar trend. This experiment shows that our method can reduce the time cost compared to the state-of-the-art surface-based adaptive mechanism~\cite{Winchenbach17} with no or negligible negative influence on visual quality.
+
+\begin{figure*}
+    \centering
+    \subfigure[Boat-sailing experiment.]{
+    \includegraphics[width=0.635\textwidth]{figure/data/ship.png}
+    \label{fig:ship_data}
+    }
+    \subfigure[Cylinder moving experiment.]{
+    \includegraphics[width=0.3\textwidth]{figure/data/rod_count.png}
+    \label{fig:rod_count}
+    }
+    \vspace{-0.7\baselineskip}
+    \caption{Particle count and time consumption in boat-sailing and cylinder moving experiment. Solid lines denote particle count; dashed lines denote time consumption. One frame equals $1/24\mathrm{s}$.}
+    
+\end{figure*}
+
+\subsection{Effect Evaluation}
+
+
+\paragraph{Cylinder moving}
+
+Fig.\ref{fig:rod} shows an experiment where a cylinder is moved horizontally through a water tank in a straight line to generate a wave pattern. The particles are coloured according to whether their initial positions are on one side of the moving path of the cylinder. A jagged pattern can be seen from the vertical view (first row), and curved patterns can be seen from the side view of a cross-section (second row). Fig.\ref{fig:rod_fine} shows the result of a uniformly scaled high-resolution simulation performed using the smallest allowed particle size in the two adaptive simulations, $r = 0.063$, which should be the most accurate among the three simulations. Fig.\ref{fig:rod_mark} uses our boundary refinement method where particles are adaptively refined near the cylinder. We use $\tau_{cylinder}^{max} = 21$, which is longer than the simulation duration, to prevent wake flow merging for the entire simulation to achieve a high level of detail. Fig.\ref{fig:rod_surface} uses surface-based refinement~\cite{Winchenbach17}. The two adaptive simulations use $r_{base} = 0.2$ and $\alpha = 32$. Compared to the surface-based method, our method is more similar to the high-resolution simulation in terms of the size and number of jags from the vertical view and the shape of the curved pattern in the cross-section, indicating our method can achieve a better accuracy compared to surface-based method~\cite{Winchenbach17} under certain settings.
+
+The particle count of the cylinder moving experiment is displayed in Fig.\ref{fig:rod_count}. Our method uses a larger number of particles compared to the surface-based method~\cite{Winchenbach17} to achieve higher accuracy, but the particle count is still considerably lower than the high-resolution simulation.
+
+\paragraph{Propeller spinning}
+
+In this experiment, a propeller is fully submerged in the fluid and spins horizontally to generate turbulence. We use this scenario to demonstrate the ability of our method to be combined with surface-based refinement~\cite{Winchenbach17}.
+
+Fig.\ref{fig:prop} shows the particle view of a cross-section of the propeller spinning experiment. From Fig.\ref{fig:prop_union}, it can be seen that the particle size is refined both near the surface and around the propeller. Compared with only using surface-based refinement as in Fig.\ref{fig:prop_surface}, the combined method can generate more details in a vortex, as shown in the zoomed-in areas, and also has a more similar shape to the vortex in a high-resolution simulation (Fig.\ref{fig:prop_fine}). This experiment shows that adding our method to the surface-based method~\cite{Winchenbach17} can enhance dynamic details produced by boundary coupling.
 
 \begin{figure}[htbp]
-    % \setlength{\abovecaptionskip}{1mm}
-    % \setlength{\belowcaptionskip}{-5mm}
-    \centering
-    \subfigure[isotropic] {
-    \includegraphics[width=0.47\linewidth]{figs/isotropic.png}
-    }    
-    \subfigure[anisotropic] {
-    \includegraphics[width=0.47\linewidth]{figs/anisotropic.png}
-    } 
-    \caption{Comparison of isotropic and anisotropic fluid particles.}
-    \label{fig:figure3}
+
+\centering
+\subfigure[High-resolution ($r=0.063\textrm{m}$).]{
+\centering
+\includegraphics[width=0.31\textwidth]{figure/prop/fine.png}
+\label{fig:prop_fine}
+}
+\subfigure[Ours + surface-based~\cite{Winchenbach17}.]{
+\centering
+\includegraphics[width=0.31\textwidth]{figure/prop/union.png}
+\label{fig:prop_union}
+}
+\subfigure[Only surface-based.]{
+\centering
+\includegraphics[width=0.31\textwidth]{figure/prop/surface.png}
+\label{fig:prop_surface}
+}
+\vspace{-0.7\baselineskip}
+\caption{
+A cross-section of the propeller spinning experiment where colour denotes velocity. Adaptive methods use $r_{base} = 0.1$, $\alpha = 32$, $\tau^{max}_{propeller} = 0$. In the zoomed-in areas, our method (b) generates a more detailed vortex compared to (c), closer to the high-resolution result (a).
+% Propeller spinning experiment where a propeller rotates in the fluid. A cross-section of the fluid is displayed. Particle colour denotes velocity. Compared to the surface-based method (c), our method (b) generates a vortex (the zoomed-in area) with finer details, which is also more similar to the high-resolution simulation (a).
+}
+\label{fig:prop}
+
 \end{figure}
 
-\paragraph{Smoothing Depth Information}
-Directly using spherical point sprites as depth information usually produces uneven fluid surfaces. To reduce the rugged effects, specific filters are applied to the depth image, flattening the abrupt bumps of particles by averaging $z_i$ for local pixels. One of the most common smoothing filters is a Gaussian filter\cite{ref:ref24}, with the formula:
-\begin{equation}
-    G\left({\mathbf{p}}_i, {\mathbf{p}}_j, \sigma_i\right)
-    =
-    \frac{1}{2 \pi \sigma_i^{2}} e^{-\frac{ \| {\mathbf{p}}_i - {\mathbf{p}}_j \| }{2 \sigma_i^{2}}}, 
-\label{con:equ2}
-\end{equation}
-
-\begin{figure*}[!t]
+\begin{figure*}
     \centering
-\begin{overpic}[width=\linewidth]{figs/diagram2.pdf}
-    \put(2,10){$\mathbf{x}_p^0=\left[0,0,0,1\right]^T$}
-    \put(2,7.5){$\mathbf{x}_p=\left[x_p,y_p,z_p,1\right]^T$}
-    \put(22,10){$\mathbf{x}_p^{ani}=\mathbf{C}^{r,h}\mathbf{x}_p$}
-    \put(75,19.5){$\mathbf{x}_c=\mathbf{PMT}\mathbf{x}_p$}
-    \put(75,16.5){$r_c=\left\|\left(\mathbf{x}_c-\mathbf{x}_c^0\right).xyz \right\|$}
-    \put(75,7.5){$\mathbf{x}^0_c.z\ne\mathbf{x}_c^{ani}.z$}
-    \put(89,12.5){$\left(b_{+x},b_{+y},\mathbf{x}_c.z\right)$}
-    \put(79,2.5){$\left(b_{-x},b_{-y},\mathbf{x}_c.z\right)$}
-    \put(95,18){$r_c$}
-    \put(89,6){$r_c^{ani}$}
-    \put(39,22.5){$\mathbf{T}$}
-    \put(56,22.5){$\mathbf{M}$}
-    \put(57,10.5){$\mathbf{P}$}
-\end{overpic}
-    % \includegraphics[width=\linewidth]{figs/diagram2.pdf}
-    \caption{The pipeline of rasterizing the fluid particle onto the screen space. For representing fluid particles using an isotropic sphere. The stretching effects from the projection matrix $P$ are negligible. So particles always have a round appearance at the clip space, and the radius $r_c$ can be measured from the bias between the position of sphere centre $\mathbf{x}_c^0$ and any point on the sphere surface $\mathbf{x}_c$ at the clip coordinate. To perform a more desirable fluid effect, we apply the anisotropic transformation for each particle at the parameter space (red box). Furthermore, the resulting shape on the clip space is elliptical. The boundary of the ellipse can not be derived using the traditional method because the point on the resulting surface may not lie on the projected plane (not having the same depth $\mathbf{x}^0_c.z\ne\mathbf{x}_c^{ani}.z$). }
-    \label{fig:diag_aniso}
+    \subfigure[Our method without wake flow preservation ($\tau_{box}^{max} = 0$).]{
+    
+    \begin{overpic}[width=0.155\textwidth]{figure/box/box_schem_bound2.png}
+    \put (19,17) {\footnotesize refine}
+    \put (60,12) {\footnotesize fluid}
+    \put (22,29.5) {\footnotesize box}
+    \end{overpic}
+    \includegraphics[width=0.27\textwidth]{figure/box/bound1.png}
+    \includegraphics[width=0.27\textwidth]{figure/box/bound4.png}
+    \includegraphics[width=0.27\textwidth]{figure/box/bound5.png}
+    \label{fig:box_bound}
+    }
+    \subfigure[Our method with wake flow preservation ($\tau_{box}^{max} = 1$).]{
+    
+    \begin{overpic}[width=0.155\textwidth]{figure/box/box_schem_mark2.png}
+    \put (19,17) {\footnotesize refine}
+    \put (40,8.5) {\footnotesize fluid}
+    \put (22,29.5) {\footnotesize box}
+    \put (50,17) {\footnotesize wake flow}
+    \end{overpic}
+    \includegraphics[width=0.27\textwidth]{figure/box/mark1.png}
+    \includegraphics[width=0.27\textwidth]{figure/box/mark4.png}
+    \includegraphics[width=0.27\textwidth]{figure/box/mark5.png}
+    \label{fig:box_mark}
+    }
+    \vspace{-0.7\baselineskip}
+    \caption{Moving box experiment. In this experiment, a box-shaped boundary object moves close to the fluid surface but not touching the fluid, causing particle refinement near it but not disturbing the fluid. The leftmost column shows the experimental setup; the other columns show the result. Color denotes particle size. Our method uses $r_{base} = 0.2$ and $\alpha = 32$. The distance between the box and the fluid surface is $0.1$.}
+    
 \end{figure*}
 
-\noindent
-where $j$ is the neighbour pixel of $i$, $\sigma$ is the standard deviation parameter determined by $z_i$~\cite{truong2018narrow}, and ${\mathbf{p}}$ describes the location for each pixel in the screen space. 
-The Gaussian convolution can obtain smooth particle depth information. However, it can cause over-smoothing, leading to some loss of edges. Therefore, variants such as the bilateral Gaussian method are often used to obtain better results.
+\begin{figure*}
+    \centering
+    \subfigure[Boat-sailing experiment.]{
+    \includegraphics[width=0.635\textwidth]{figure/data/ship_energy.png}
+    \label{fig:ship_energy}
+    }
+    \subfigure[Moving box experiment.]{
+    \includegraphics[width=0.3\textwidth]{figure/data/energy_box.png}
+    \label{fig:energy_box}
+    }
+    \vspace{-0.7\baselineskip}
+    \caption{Sum of total kinetic and dynamic energy in boat-sailing and moving box experiment, expressed in ratio of current energy to energy in the first frame. One frame equals $1/24\mathrm{s}$.}
+    
+\end{figure*}
 
-\subsection{Thickness Information}
-Fluid distribution in the real world is not uniform, so it is necessary to calculate the amount of fluid between the camera and the nearest opaque object, called the thickness image. When shading, the thickness image is used to calculate the colour and transparency of the fluid\cite{ref:ref14}. The formula is given as follows:
-\begin{equation}
-    T(\mathbf{{p}}_i)=\sum_{j=0}^{n} G\left( \left\| \mathbf{{p}}_i - \mathbf{\hat{x}}_j \right\| \right), 
-\label{con:equa3}
-\end{equation}
-where $n$ represents all fluid particles, $\mathbf{\hat{x}}_j$ corresponds to the projection position of particle $\mathbf{{x}}_j$ in the screen space. This calculation is correct when the particles do not overlap. Because of the incompressibility of the SPH method (particles seldom overlap), the thickness information can be calculated by Eqn.~\ref{con:equa3}.
+\section{Conclusion and Discussion}
 
-% \begin{figure}[!t]
+\section{Limitations}
+
+\paragraph{visual performance}
+In the surface-based only SPH adaptive mechanism, the sizes of the particles are always transformed smoothly in space according to a continuous and stable signed distance field. However, our boundary-based adaptive method may encounter the difficulties of particle merging. The divided small particles, as a part of the waves stirred up by the solid boundary, may not have the neighbour particles of similar size to be merged when falling back to the fluid surface.
+ 
+We make a solid boundary fly over the fluid surface without substantive contact to demonstrate this issue. Only the sizes of the fluid particle will be affected by the signed distance field from the solid object. As shown in Fig.~\ref{}, we carried out this experiment separately with and without the wake flow preservation mechanism. The sizes of the particles are colour-coded as smaller particles with brighter appearances. Here we can see that our wake flow preservation mechanism delays the merging process effectively.
+
+However, we can also observe that when the solid object leaves the fluid surface, some small particles are left unmerged on the surface. This is because our method only allows the merging procedure to happen between particles of similar sizes. When small particles begin to merge, there will be $s$ particles too far away from one another to be fused. On the other hand, the surface-based adaptive mechanism naturally guarantees fluid particles near each other obtain similar sizes as it only depends on particles' distances to the fluid surface.
+
+\subsection{Summary}
+
+We propose a new boundary refinement mechanism for adaptive SPH to refine particles near the coupling boundary and retain resolution for the flow generated by solid objects. 
+%
+Experiments show that, compared to surface-based only refinement mechanism, our method can improve the computation efficiency significantly for enhancing fluid details when simulating fluid-solid coupling scenarios. 
+%
+Further, the proposed method can also produce more accurate visual results for underwater coupling scenarios such as propeller spinning.
+%
+Therefore, our method can be widely applied to most fluid simulation scenarios to improve the efficiency and visual quality since many fluid simulations focus on the interaction between fluid and solid. 
+%
+A limitation of our method is that when a solid particle leaves the refined region due to splashing etc., it would lack merge partners and remain in the unrefined region, causing a small redundancy in particles. We aim to deal with this limitation in further research. In the future we will develop new mechanism to address this issue.
+
+
+% \begin{figure}
 % \centering
-% \begin{overpic}
-%     [width=\linewidth]{figs/surface_processing.png}
-%     \put(50,88) {camera}
-%     \put(55,63) {foreground surface}
-%     \put(5,37) {background surface}
-%     \put(63,5) {refraction direction}
-% \end{overpic}
-% \caption{The schematic diagram of surface processing in screen space rendering method.}
-% \label{fig:figure1}
+% \includegraphics[width=6cm]{figure.jpg}
+% \caption{
+% Diagrams aid a readers perception of the paper, to correctly convey information.}
+% \label{fig:ex}
 % \end{figure}
-\subsection{Normal Reconstruction and Surface Shading}
-After obtaining the vertex coordinates in camera space, the normal needs to be reconstructed from the coordinates to handle light reflection and refraction on the surface. The partial derivatives are calculated according to the finite difference method.
 
-Afterwards, the refraction of the fluid~\cite{ref:ref25} and Blinn-Phong illumination~\cite{ref:ref27} are calculated. The relationship between the transmittance of the fluid and the thickness of the fluid is obtained according to the Beer-Lambert algorithm\cite{ref:ref28} $I(d)=I_{0} d^{-k d}$, where $d$ is the thickness of the fluid, $I_0$ is the value of light intensity and $k$ is the attenuation coefficient vector of the fluid. Then the final fluid colouring result is obtained.
+\section*{Acknowledgement}
+This research was funded by: Horizon 2020-Marie Skłodowska-Curie Action-Individual Fellowships (No.895941), National Key Research and Development Program of China (No.2020YFB0704501), National Natural Science Foundation of China (No.61873299), Key Research and Development Project of Hainan Province (No.ZDYF2020031).
 
-\begin{figure}[b!]
-    % \setlength{\abovecaptionskip}{1mm}
-    % \setlength{\belowcaptionskip}{-5mm}
-    \centering
-    \subfigure[isotropic] {
-    \includegraphics[width=0.48\linewidth]{figs/figure5_1_new.png}
-    }
-    \hspace{-7pt}
-    \subfigure[anisotropic] {
-    \includegraphics[width=0.48\linewidth]{figs/figure5_2_new.png}
-    } 
-    \caption{Experimental comparison of isotropy and anisotropy in the dam break scenario.}
-    \label{fig:figure4}
-\end{figure}
+\nocite{*}% Show all bib entries - both cited and uncited; comment this line to view only cited bib entries;
+\bibliography{example}
 
-\section{Anisotropic Transformation of Point Sprites for Fluid Particles}
+\section*{Author Biography}
 
-In fluid simulation, a finer-grained spatial discretization can be achieved by increasing the simulation resolution by representing fluid using smaller particles, generating smoother edges when rendered. However, increasing the resolution for 3D fluid simulation requires complex computations, which seriously affects the performance in real-time. To combine both efficiency and quality, our approach is based on the weighted principal components analysis (WPCA) of SPH fluid particles. We obtain anisotropic kernel functions to obtain anisotropic fluid particles based on their distribution and use the eigenvalue magnitudes on the eigenvectors as the basis for fluid particle deformation to achieve efficient smoothing and detail preservation. The effects of this anisotropic transformation on the screen space are presented in Fig.~\ref{fig:figure3}.
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YanruiXu.jpg}}{\textbf{Yanrui Xu} is a Ph.D. student in Computer Science and Technology at University of Science and Technology Beijing. He received a Master's degree in University of Science and Technology Beijing, in 2020. His research field is computer graphics, especially physically-based fluid simulation.}
+\end{biography}
 
-\subsection{Tracing Surface Using Smoothing Kernel}
-In particle-based fluid simulation, fluid particles are represented as spheres, which are then used to perform screen space projection based on point sprites or surface reconstruction using the marching cubes algorithm. Since the discrete fluid particles are isotropic, for a fluid particle $i$ whose centre is located at the spatial coordinate $\mathbf{x}_i$, the approximated value $\phi_i$ of the colour field at its location can be averaged and weighted by all its neighbouring particles as:
-\begin{equation}
-\phi_{i}=\sum_{j} \frac{m_{j}}{\rho_{j}} W\left(\|\mathbf{x}_i-\mathbf{x}_j\|, h\right),
-\label{con:equa9}
-\end{equation}
-where $m_j$ and $\rho_j$ are the volume and density of the neighbouring fluid particle $j$, $W$ is called the smoothing kernel or kernel function, which is a normalized Gaussian-like function~\cite{Ihmsen14}, $h$ is the support radius of the kernel function, beyond which $W$ takes the value of 0. In this paper, we use an anisotropic smoothing kernel $W(\mathbf{r},\mathbf{B})$ to replace the isotropic function $W(r,h)$ by introducing the anisotropy matrix $\mathbf{B}$ into the kernel function:
-\begin{equation}
-W(\mathbf{r},\mathbf{B})=\beta \operatorname{det}(\mathbf{B}) P(|\mathbf{r}\mathbf{B}|),
-\label{con:equa10}
-\end{equation}
-where $\beta$ is the scaling factor, $P$ is a symmetric decaying spline with finite support.
+\vspace{7ex}
 
-The anisotropy matrix $\mathbf{B}$ makes the smoothing kernel anisotropic by stretching and rotating the relative position $\mathbf{r}$ between particles. Fig.\ref{fig:figure3}(a) shows the fluid particles in the normal state, and Fig.\ref{fig:figure3}(b) shows the fluid particles after anisotropic processing. It can be easily observed that particles become more compact and smooth at the edges of the fluid when using the anisotropic representation.
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/ChongmingSong.JPG}}{\textbf{Chongming Song} is a postgraduate student in Computer Science and Technology at University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
+\end{biography}
 
-\begin{figure}[!t]
-    \centering
-    \subfigure[isotropic] {
-    \includegraphics[width=0.46\linewidth]{figs/figure6_4.png}
-    }    
-    \subfigure[anisotropic] {
-    \includegraphics[width=0.46\linewidth]{figs/figure6_5.png}
-    } 
-    \caption{Experimental comparison of isotropy and anisotropy in the fluid-soild coupling scenario.}
-    \label{fig:figure5}
-\end{figure}
+\vspace{7ex}
 
-\subsection{Deriving Anisotropy Matrix}
-The anisotropic kernel function mentioned above can be considered a generalization of the isotropic kernel function. Let $\mathbf{I}$ be a d-dimensional unit matrix. When $B=\frac 1 h \mathbf{I}$, $W(\mathbf{r},\mathbf{B})$ returns to $W(r,h)$. To make the values of the kernel function larger along the tangential direction of the fluid surface than the normal direction, or to stretch the kernel along the edges of the fluid, WPCA\cite{ref:ref30} is performed to find the eigenvalues and eigenvectors according to neighbouring fluid particles. Since the Lagrangian simulation algorithm is naturally non-uniform in particle distribution, the use of the WPCA method effectively avoids the sensitivity to outliers in the traditional principal component analysis (PCA) method and enhances the efficiency of surface smoothing.
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/XiaokunWang.jpg}}{\textbf{Xiaokun Wang} is an associate professor in School of Computer and Communication Engineering, University of Science and Technology Beijing, China. He received a Ph.D. degree in Computer Science and Technology from University of Science and Technology Beijing, in 2017. His research interests include computer graphics, virtual reality and human-computer interaction.}
+\end{biography}
 
-First, a weight value $\omega_{ij}$ is determined for each pair of fluid particles. A weighted covariance matrix is then constructed using the weight values, and singular value decomposition (SVD) is performed on the covariance matrix. The obtained matrix principal axes, as well as the eigenvalues, are finally used to construct the anisotropy matrix $\mathbf{B}$. The weighted average position of the fluid is given as $\bar{\mathbf{x}}_{i}=\sum_{j} \omega_{ij} \mathbf{x}_{j}$, where $\omega_{ij}$ is the weight of the fluid neighbor particle $j$ to particle $i$. In this paper we 
-compute $\omega_{i j}$ as:
+\vspace{4.15ex}
 
-\begin{equation}
-\omega_{i j}=\frac{W\left(\left|\mathbf{x}_{i}-\mathbf{x}_{j}\right|, h\right)}{\sum_{j} W\left(\left|\mathbf{x}_{i}-\mathbf{x}_{j}\right|, h\right)}.\label{con:equa11}
-\end{equation}
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/XiaojuanBan.png}}{\textbf{Xiaojuan Ban} is a professor in Artificial Intelligence and leader of the Computer Animation Group at University of Science and Technology Beijing, China. She received her master's degree in computer application and Ph.D. degree in control theory and control engineering from the University of Science and Technology Beijing. Her research interests include computer graphics, artificial intelligence, human-computer interaction, big data analysis and 3D visualization.}
+\end{biography}
 
-This results in a larger normalised weighting when the particles are closer. The displacement of the weighted average position from the original position can indicate the distribution trend of the fluid surface. Based on this trend, a covariance matrix $\mathbf{C}_i$ can be constructed for the fluid particle $i$ as:
+\vspace{1.3ex}
 
-\begin{equation}
-\mathbf{C}_{i}=\sum_{j} \omega_{i j}\left(\mathbf{x}_{j}-\bar{\mathbf{x}}_{i}\right)\left(\mathbf{x}_{j}-\bar{\mathbf{x}}_{i}\right)^{T}\label{con:equa12}.
-\end{equation}
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/JiaminWang.jpg}}{\textbf{Jiamin Wang} is a postgraduate student in Computer Science and Technology at University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
+\end{biography}
 
-A singular value decomposition for the covariance matrix yields $\mathbf{C}_{i}=\mathbf{W} \mathbf{\Sigma} \mathbf{W}^{T}$, where the diagonal matrix $\mathbf{\Sigma} = diag(\sigma_1,\sigma_2,...,\sigma_d)$ contains all the eigenvalues from the largest to the smallest. To obtain a stable anisotropic deformation effect, the minimum of eigenvalues is restricted to a threshold with respect to the largest eigenvalue. The value of $\sigma_k^r$ is chosen as $\sigma_k^r=max(\sigma_1/\kappa,\sigma_k)$ to adjust the smaller eigenvalues so that the ratio of the largest eigenvalue to the smallest one is limited. In our experiments, we choose $\kappa=4$. Furthermore, no anisotropic kernel function is used when the number of neighbouring particles is less than or equal to $20$, and a scale control factor $s$ makes $|s \mathbf{C}| \approx 1$ to keep the particle volume from changing significantly. We select $s=1400$ in our experiments. The regularized covariance matrix can be expressed as:
-\begin{equation}
-\mathbf{C}^{r}=W \mathbf{\Sigma}^{r} W^{T}.
-\end{equation}
+\vspace{7ex}
 
-\begin{figure*}[!t]
-    \centering
-    \subfigure[\vspace{2mm}isotropic point sprites representation]{
-    \begin{overpic}
-    [width=0.48\textwidth]{figs/ball_iso_new.png}
-    \put(5,2)       {\footnotesize No filter}
-    \put(25,2)      {\footnotesize Gaussian}
-    \put(44,4)      {\footnotesize Curvature}
-    \put(47,0)      {\footnotesize Flow}
-    \put(65,4)      {\footnotesize Bilateral}
-    \put(64.5,0)    {\footnotesize Gaussian}
-    \put(80,2)      {\footnotesize Narrow-Range}
-    \end{overpic}
-    \label{fig:ball_iso}
-    }   
-    \subfigure[anisotropic point sprites representation]{
-    \begin{overpic}
-    [width=0.48\textwidth]{figs/ball_aniso_new.png}
-    \put(5,2)       {\footnotesize No filter}
-    \put(25,2)      {\footnotesize Gaussian}
-    \put(44,4)      {\footnotesize Curvature}
-    \put(47,0)      {\footnotesize Flow}
-    \put(65,4)      {\footnotesize Bilateral}
-    \put(64.5,0)    {\footnotesize Gaussian}
-    \put(80,2)      {\footnotesize Narrow-Range}
-    \end{overpic}
-    \label{fig:ball_aniso}
-    } 
-    \caption{Experimental comparison of isotropy and anisotropy in the dam break scenario. Columns 1-5 is the (a) part of this figure, demonstrating surface constructed without anisotropic transformation; Columns 6-10 is the (b) part of this figure, showing how anisotropic transformation works with and without different smoothing filters.}
-    \label{fig:ball_iso_and_aniso}
-\end{figure*}
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YalanZhang.jpg}}{\textbf{Yalan Zhang} received her Ph.D. degree in Computer Science and Technology from University of Science and Technology Beijing, China, in 2020. Currently, she is a lecturer at University of Science and Technology Beijing. Her research interests include computer graphics, 3-D visualization and computer vision.}
+\end{biography}
 
-\subsection{Transforming Sphere Particles onto the Screen Space}
-As shown in Fig.~\ref{fig:diag_aniso}, the key implementation of the anisotropic transformation converting the spherical particle to an ellipsoid in this paper is by applying a $4\times 4$ homogeneous anisotropic transformation matrix $\mathbf{C}^{r,h}$ onto the sphere at the parameter space, which takes the form:
-\begin{equation}
-    \mathbf{C}^{r,h} =
-    \left[\begin{array}{ccc}
-    \mathbf{C}^r & & 0 \\
-    & & \vdots \\
-    0 & \cdots & 1
-    \end{array}\right].
-\end{equation}
+\vspace{7ex}
 
-To determine the size of the projected ellipse for an anisotropic point sprite, we apply the method proposed by Sigg et al.~\cite{10.5555/2386388.2386396}, where the positions $(b_{-x},b_{-y})$ and $(b_{+x},b_{+y})$ at the clip coordinate can be computed by inversely transforming the position back to the parameter space. For $\mathbf{x}_c$ inside the point sprite, $\mathbf{n}_c^T\mathbf{x}_c\le 0$ with $\mathbf{n}_c=\left(1,0,0,b_x\right)^T$ must be satisfied. To trace $b_x$ back to the parameter space, we have:
-\begin{equation}
-    \mathbf{n}_p = \left( \mathbf{P}\cdot \mathbf{M}\cdot \mathbf{T}\cdot\mathbf{C}^r \right)^{T} \mathbf{n}_c,
-\end{equation}
-where
-\begin{equation}
-    \mathbf{T}=
-    \left[\begin{array}{cccc}
-    r_c & 0 & 0 & x_o \\
-    0 & r_c & 0 & y_o \\
-    0 & 0 & r_c & z_o \\
-    0 & 0 & 0 & 1
-    \end{array}\right].
-\end{equation}
-is a scaling matrix to satisfy $\left\| \mathbf{x}_p.{xyz} \right\| = r_c$ in Fig.~\ref{fig:diag_aniso}. Here $x_o$ is the $x$ component of particle position at the object space. And the notation $.xyz$ in Fig.~\ref{fig:diag_aniso} denotes the vector consisting of the first three elements in a four-dimensional position vector $\mathbf{x}$.
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/JianChang.jpg}}{\textbf{Jian Chang} is a professor in  computer animation at Bournemouth University, United Kindom. He received his Ph.D. degree in Computer Graphics from Bournemouth University, in 2007. His research interests include physics based modelling (deformation \& fluid), motion synthesis, virtual reality (surgery simulation), and novel HCI (eye tracking, gesture control and haptic).}
+\end{biography}
 
-\section{Results and Analysis}
-
-The experiments below are performed using a hardware platform of AMD Ryzen 7 5800H @3.20 GHz, 32GB memory, and NVIDIA RTX 3060. The 3D graphics API OpenGL is used for particle rendering, and C++ is used as the hardware graphics interactive language to process logical operations. In addition, GLSL colouring language is used to calculate the fluid optical effect in GPU. The real-time performance of fluid is maintained during all experiments.
-
-\begin{figure}[!b]
-    \centering
-    \begin{overpic}
-        [width=\linewidth]{figs/figure9.png}
-        \put(6,-2)      {\footnotesize Gaussian}
-        \put(25,-2)      {\footnotesize Bilateral Gaussian}
-        \put(53,-2)      {\footnotesize Curvature Flow}
-        \put(78,-2)      {\footnotesize Narrow-Range}
-    \end{overpic}
-    \caption{From left to right are Gaussian filter, bilateral Gaussian filter, curvature flow filter and narrow-range filter. 
-    % All methods use the same number of iterations ($iter = 2$) except the curvature flow-based method with a larger number ($iter = 80$).
-    }
-    \label{fig:figure6}
-\end{figure}
-
-\subsection{Anisotropic Processing Results}
-In this subsection, the anisotropic algorithm is adopted to process fluid particles to reduce the roughness of the fluid depth map, which can improve the final rendering effect of the fluid surface. As shown in Fig.\ref{fig:figure4}, (a) and (b) respectively represent the surface rendering results when two water blocks collide under isotropic and anisotropic conditions. It can be observed that the overall surface rendering results processed by the anisotropic algorithm are smoother, and the illumination shading is more realistic with fine highlights.
-
-In addition, experimental verification is conducted for a fluid-solid coupling scenario, as shown in Fig.~\ref{fig:figure5}. In the fluid-solid coupling scenario, real-time fluid rendering based on the anisotropic algorithm shows better surface results with smoother surfaces, especially at the interface between the rigid body and liquid.
-
-\begin{figure}[htpb]
-    \centering
-    \begin{overpic}
-        [width=\linewidth]{figs/figure10.png}
-        \put(6,-3)      {\footnotesize Gaussian}
-        \put(25.5,-3)     {\footnotesize Bilateral Gaussian}
-        \put(54,-3)     {\footnotesize Curvature Flow}
-        \put(78,-3)     {\footnotesize Narrow-Range}
-    \end{overpic}
-    \caption{From left to right are Gaussian filter, bilateral Gaussian filter, curvature flow filter and narrow-range filter.}
-    \label{fig:figure7}
-\end{figure}
-
-\subsection{Combination with Popular Smoothing Filters}
-In this subsection, the anisotropic algorithm is combined with various popular smoothing filters to verify the effectiveness and practicability of the proposed scheme under actual application scenarios. The Gaussian filter, the bilateral Gaussian filter and the narrow-range filter use the same number of iterations ($iter=2$). The curvature flow filter uses more iterations ($iter=80$) to obtain flat surface results at the cost of performance loss.
-
-% obtain the final fluid rendering effect, and the performance of different filters is compared. The Gaussian filter, the bilateral Gaussian filter and the narrow-range filter use the same number of iterations. The curvature flow filter uses more iterations to obtain flat surface results, at the cost of performance loss.
-
-Fig.~\ref{fig:ball_iso_and_aniso} demonstrates the scenario where a dam-break fluid collides with multiple differently shaped solid objects. Complex boundary geometries can be observed in this case. We conducted this experiments using various kinds of smoothing filters considering both isotropic and anisotropic conditions. Fig.~\ref{fig:ball_iso} and Fig.~\ref{fig:ball_aniso} show the surfaces constructed using isotropic and anisotropic point sprites respectively. It can be seen that the proposed anisotropic transformation scheme can enhance surface performance with almost every state-of-the-art smoothing filter. The second to the third row of Fig.~\ref{fig:ball_iso_and_aniso} exhibit how anisotropic transformation reduces the unevenness of particle distribution on the free surface and coupling boundaries. And the fourth row shows our method can also help to gather the sparsely distributed fluid particles representing splashes into more well-organized structures.
-
-Fig.~\ref{fig:figure6} is another experiment that further shows the anisotropic surface generation effects of the fluid under different filters with a more complex fluid-rigid coupling boundary. The Gaussian filter is a separable filter with high computational efficiency. However, it still produces a large amount of noise on the surface, which is far from the desired ideal result. Meanwhile, the boundary morphed into particles due to a lack of neighbouring particles in the splashing area (second row of Fig.~\ref{fig:figure6}). The Bilateral Gaussian filter solved the boundary problem in the particle-deficiency areas and reduced some noise on the surface. However, it produces an over-flattening phenomenon in the discontinuous surface details, and the edge information between particles is lost. After 80 iterations, the curvature flow filter produces a good surface effect in some areas. However, this method is unstable and time-consuming. The narrow-range filter method effectively solves these problems with better surface effects and time efficiency.
-
-Fig.~\ref{fig:figure7} shows the influence of different filtering algorithms with transparent fluids. It can be seen that compared with other algorithms, the narrow-range filter algorithm can produce a smoother fluid effect. Moreover, the overall highlight can form an obvious bright area, which is more consistent with the water highlight effect in the real world.
-
-\subsection{Performance Analysis of the Anisotropic Transformation}
-
-To evaluate how the refined anisotropic transformation affects the efficiency of the screen space rendering. We carried out the experiment of Fig.~\ref{fig:figure4} using multiple configurations with various numbers of fluid particles, alternative smoothing filters, and the on/off status of the anisotropic transformation.
-
-The relationship between particle number and corresponding frame rate under different methods is shown in Fig.\ref{fig:figure8}. We can see that the anisotropic transformation barely affects the efficiency of the whole screen space rendering pipeline. And although the curvature flow filter can achieve better surface effects with a higher number of iterations, its rendering time also increases. In contrast, the narrow-range filter method not only gives a better surface effect but also keeps the rendering time almost linearly increased with respect to the number of particles.
-
-\begin{figure}[!t]
-    % \setlength{\abovecaptionskip}{1mm}
-    % \setlength{\belowcaptionskip}{-5mm}
-    \centering
-    \includegraphics[width=\linewidth]{figs/FPS.png}
-    \caption{Frame rate comparison of different algorithms.}
-    \label{fig:figure8}
-\end{figure}
-
-\section{Conclusion}
-We propose an anisotropic real-time surface rendering scheme based on the screen space approach. The method uses WPCA to determine an anisotropic transform for particle point sprites, solving the problem of jagged edges and uneven surfaces of the fluid in traditional screen space rendering. We also compare the rendering effect and efficiency of various popular smoothing filters by experiments. It is concluded that the narrow-range filter is the preferred method for screen space rendering because it can obtain a better surface effect and maintain an acceptable frame rate. In the future, we will study the screen-space rendering of complex phenomena, such as the real-time visualization of multiphase fluid mixing, through the screen-space mapping of material type information.
-% \section*{Acknowledgments}
-% Acknowledgments should be inserted at the end of the paper, before the
-% references, not as a footnote to the title. Use the unnumbered
-% Acknowledgements Head style for the Acknowledgments heading.
-
-
-\bibliographystyle{cag-num-names}
-\bibliography{refs}
-
-
-%%Vancouver style references.
+\vspace{5ex}
 
 \end{document}
-
-%%
