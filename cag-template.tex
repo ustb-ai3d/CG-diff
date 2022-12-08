@@ -23,20 +23,20 @@
 
 \author[1]{Chongming Song}
 
-\author[1]{Xiaokun Wang*}
+\author[2]{Xiaokun Wang*}
 
 \author[2,3]{Xiaojuan Ban*}
 
 \author[1]{Jiamin Wang}
 
-\author[1]{Yalan Zhang}
+\author[2]{Yalan Zhang}
 
 \author[4]{Jian Chang}
 
 \authormark{Yanrui Xu \textsc{et al}}
 
 
-\address[1]{\orgdiv{School of Computer and Communication Engineering}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
+\address[1]{\orgdiv{School of Intelligence Science and Technology}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
 
 \address[2]{\orgdiv{Institute of Artificial Intelligence}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
 
@@ -546,7 +546,14 @@ A cross-section of the propeller spinning experiment where colour denotes veloci
 
 \end{figure}
 
-\begin{figure*}
+\section{Conclusion and Discussion}
+
+\subsection{Limitations}
+
+\paragraph{Visual effects}
+In the surface-based only SPH adaptive mechanism, the sizes of the particles are always transformed smoothly in space according to a continuous and stable distance. However, our boundary-based adaptive method may encounter the difficulties of particle merging. The divided small particles, as a part of the waves stirred up by the solid boundary, may not have suitable $s$ or $S$ neighbour particles to be merged when falling back to the fluid surface.
+
+\begin{figure*}[h]
     \centering
     \subfigure[Our method without wake flow preservation ($\tau_{box}^{max} = 0$).]{
     
@@ -574,11 +581,19 @@ A cross-section of the propeller spinning experiment where colour denotes veloci
     \label{fig:box_mark}
     }
     \vspace{-0.7\baselineskip}
-    \caption{Moving box experiment. In this experiment, a box-shaped boundary object moves close to the fluid surface but not touching the fluid, causing particle refinement near it but not disturbing the fluid. The leftmost column shows the experimental setup; the other columns show the result. Color denotes particle size. Our method uses $r_{base} = 0.2$ and $\alpha = 32$. The distance between the box and the fluid surface is $0.1$.}
-    
+    \caption{Moving box experiment. In this experiment, a box-shaped boundary object moves close to the fluid surface but does not touch the fluid, causing particle refinement near it but not disturbing it. The leftmost column shows the experimental setup; the other columns show the result. Colour denotes particle size. Our method uses $r_{base} = 0.2$ and $\alpha = 32$. The distance between the box and the fluid surface is $0.1$.}
+    \label{fig:fly_box}
 \end{figure*}
+ 
+As shown in Fig.~\ref{fig:fly_box}, we make a solid box fly over the fluid surface without substantive contact to demonstrate this issue. Only the sizes of the fluid particle will be affected by the signed distance field from the solid object. We carried out this experiment separately with and without the wake flow preservation mechanism. The sizes of the particles are colour-coded as smaller particles have brighter appearances. Here we can see that our wake flow preservation mechanism delays the merging process effectively.
 
-\begin{figure*}
+However, we can also observe that when the solid object leaves the fluid, some small particles are left unmerged on the surface. This is because our method only allows the merging procedure to take place between particles of $s$ or $S$ class. When small particles begin to merge, there may be no $s$ or $S$ particles in the range of merging. On the other hand, the surface-based adaptive mechanism naturally guarantees fluid particles near each other obtain similar sizes as it only depends on particles' distances to the fluid surface, so particles of suitable class are easier to be found. 
+
+\paragraph{Energy conservation}
+
+The particle splitting and merging techniques applied in this paper would also introduce potential energy conservation violations into the simulation.  We measured the total energy (including kinetic and gravitational potential energy) for the boat-sailing experiment in Fig.~\ref{fig:ship} and the moving box experiment in Fig.~\ref{fig:fly_box} and drew the statistical diagram in Fig.~\ref{fig:energy_diagram}.
+
+\begin{figure*}[h]
     \centering
     \subfigure[Boat-sailing experiment.]{
     \includegraphics[width=0.635\textwidth]{figure/data/ship_energy.png}
@@ -589,32 +604,25 @@ A cross-section of the propeller spinning experiment where colour denotes veloci
     \label{fig:energy_box}
     }
     \vspace{-0.7\baselineskip}
-    \caption{Sum of total kinetic and dynamic energy in boat-sailing and moving box experiment, expressed in ratio of current energy to energy in the first frame. One frame equals $1/24\mathrm{s}$.}
-    
+    \caption{Statistical analysis of energy change (sum of total kinetic and gravitational potential energy) in boat-sailing and moving box experiments with a frame rate of $24$ fps. The energy change with time is expressed with the ratio of the current time's energy to the first frame's.}
+    \label{fig:energy_diagram}
 \end{figure*}
 
-\section{Conclusion and Discussion}
-
-\section{Limitations}
-
-\paragraph{visual performance}
-In the surface-based only SPH adaptive mechanism, the sizes of the particles are always transformed smoothly in space according to a continuous and stable signed distance field. However, our boundary-based adaptive method may encounter the difficulties of particle merging. The divided small particles, as a part of the waves stirred up by the solid boundary, may not have the neighbour particles of similar size to be merged when falling back to the fluid surface.
- 
-We make a solid boundary fly over the fluid surface without substantive contact to demonstrate this issue. Only the sizes of the fluid particle will be affected by the signed distance field from the solid object. As shown in Fig.~\ref{}, we carried out this experiment separately with and without the wake flow preservation mechanism. The sizes of the particles are colour-coded as smaller particles with brighter appearances. Here we can see that our wake flow preservation mechanism delays the merging process effectively.
-
-However, we can also observe that when the solid object leaves the fluid surface, some small particles are left unmerged on the surface. This is because our method only allows the merging procedure to happen between particles of similar sizes. When small particles begin to merge, there will be $s$ particles too far away from one another to be fused. On the other hand, the surface-based adaptive mechanism naturally guarantees fluid particles near each other obtain similar sizes as it only depends on particles' distances to the fluid surface.
+In Fig.~\ref{fig:ship_energy}, we can see that for the boat-sailing experiment, both our method and surface enhancement method~\cite{Winchenbach17} obtain energy higher than both high-resolution and low-resolution simulation results. This manifests in the random spatter of fluid particles during the simulation, indicating the instability issue of the method. This issue is further demonstrated in Fig.~\ref{fig:energy_box}, where, as the chart shows, the violation of energy conservation energy happens during the merging process. The energy cannot remain stable when the solid box starts to cause the fluid to split and merge. Moreover, for the experiment applying wake flow preservation, the period of conserving energy performs worse. Though this instability is relatively small (generally less than $1\text{\textperthousand}$ energy fluctuation), it can generate unexpected artefacts if the simulation scenario is not carefully configured.
 
 \subsection{Summary}
 
 We propose a new boundary refinement mechanism for adaptive SPH to refine particles near the coupling boundary and retain resolution for the flow generated by solid objects. 
 %
-Experiments show that, compared to surface-based only refinement mechanism, our method can improve the computation efficiency significantly for enhancing fluid details when simulating fluid-solid coupling scenarios. 
+Experiments show that, compared to the surface-based only refinement mechanism, our method can improve the computation efficiency significantly for enhancing fluid details when simulating fluid-solid coupling scenarios. 
 %
-Further, the proposed method can also produce more accurate visual results for underwater coupling scenarios such as propeller spinning.
+Further, the proposed method can produce more accurate visual results for underwater coupling scenarios such as propeller spinning.
 %
-Therefore, our method can be widely applied to most fluid simulation scenarios to improve the efficiency and visual quality since many fluid simulations focus on the interaction between fluid and solid. 
+Therefore, our method can be widely applied to most fluid simulation scenarios to improve efficiency and visual quality since many fluid simulations focus on the interaction between fluid and solid. 
 %
-A limitation of our method is that when a solid particle leaves the refined region due to splashing etc., it would lack merge partners and remain in the unrefined region, causing a small redundancy in particles. We aim to deal with this limitation in further research. In the future we will develop new mechanism to address this issue.
+A limitation of our method is that when a solid particle leaves the refined region due to splashing etc., it would lack merge partners and remain in the unrefined region, causing a small redundancy in particles. Also, the splitting and merging process of our method would cause a potential violation of energy conservation and generate visual artefacts such as unrealistic splashes.
+
+In the future, we will explore a more stable and accurate particle splitting-merging mechanism for adaptive SPH fluid simulation. The critical issue is balancing the particles' sizes close to each other and creating a progressive merging process to avoid a sudden change of local density field. 
 
 
 % \begin{figure}
@@ -633,17 +641,17 @@ This research was funded by: Horizon 2020-Marie Skłodowska-Curie Action-Individ
 
 \section*{Author Biography}
 
-\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YanruiXu.jpg}}{\textbf{Yanrui Xu} is a Ph.D. student in Computer Science and Technology at University of Science and Technology Beijing. He received a Master's degree in University of Science and Technology Beijing, in 2020. His research field is computer graphics, especially physically-based fluid simulation.}
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YanruiXu.jpg}}{\textbf{Yanrui Xu} is a Ph.D. student in Intelligence Science and Technology at University of Science and Technology Beijing. He received a Master's degree in University of Science and Technology Beijing, in 2020. His research field is computer graphics, especially physically-based fluid simulation.}
 \end{biography}
 
 \vspace{7ex}
 
-\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/ChongmingSong.JPG}}{\textbf{Chongming Song} is a postgraduate student in Computer Science and Technology at University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/ChongmingSong.JPG}}{\textbf{Chongming Song} is a postgraduate student in Intelligence Science and Technology at University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
 \end{biography}
 
 \vspace{7ex}
 
-\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/XiaokunWang.jpg}}{\textbf{Xiaokun Wang} is an associate professor in School of Computer and Communication Engineering, University of Science and Technology Beijing, China. He received a Ph.D. degree in Computer Science and Technology from University of Science and Technology Beijing, in 2017. His research interests include computer graphics, virtual reality and human-computer interaction.}
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/XiaokunWang.jpg}}{\textbf{Xiaokun Wang} is an associate professor in Institute of Artificial Intelligence, University of Science and Technology Beijing, China. He received a Ph.D. degree in Computer Science and Technology from University of Science and Technology Beijing, in 2017. His research interests include computer graphics, virtual reality and human-computer interaction.}
 \end{biography}
 
 \vspace{4.15ex}
@@ -653,12 +661,12 @@ This research was funded by: Horizon 2020-Marie Skłodowska-Curie Action-Individ
 
 \vspace{1.3ex}
 
-\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/JiaminWang.jpg}}{\textbf{Jiamin Wang} is a postgraduate student in Computer Science and Technology at University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/JiaminWang.jpg}}{\textbf{Jiamin Wang} is a postgraduate student in Intelligence Science and Technology at University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
 \end{biography}
 
 \vspace{7ex}
 
-\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YalanZhang.jpg}}{\textbf{Yalan Zhang} received her Ph.D. degree in Computer Science and Technology from University of Science and Technology Beijing, China, in 2020. Currently, she is a lecturer at University of Science and Technology Beijing. Her research interests include computer graphics, 3-D visualization and computer vision.}
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YalanZhang.jpg}}{\textbf{Yalan Zhang} received her Ph.D. degree in Computer Science and Technology from University of Science and Technology Beijing, China, in 2020. Currently, she is a lecturer in Institute of Artificial Intelligence, University of Science and Technology Beijing. Her research interests include computer graphics, 3-D visualization and computer vision.}
 \end{biography}
 
 \vspace{7ex}
