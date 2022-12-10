@@ -1,7 +1,7 @@
 \documentclass[VANCOUVER,STIX1COL]{WileyNJD-v2}
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /dir/cag-template_old.tex   Thu Dec  8 20:35:55 2022
-%DIF ADD /dir/cag-template.tex       Thu Dec  8 20:35:55 2022
+%DIF DEL /dir/cag-template_old.tex   Sat Dec 10 20:01:41 2022
+%DIF ADD /dir/cag-template.tex       Sat Dec 10 20:01:41 2022
 
 \usepackage{subfigure}
 \usepackage{overpic}
@@ -57,43 +57,59 @@
 
 % \title{This is the sample article title\protect\thanks{This is an example for title footnote.}}
 
-\title{Spatial Adaptivity with Boundary Refinement for SPH Fluid Simulation}
-
-\author[1]{Yanrui Xu}
-
-\author[1]{Chongming Song}
+\title{Spatial \DIFdelbegin \DIFdel{Adaptivity }\DIFdelend \DIFaddbegin \DIFadd{adaptivity }\DIFaddend with \DIFdelbegin \DIFdel{Boundary Refinement }\DIFdelend \DIFaddbegin \DIFadd{boundary refinement }\DIFaddend for SPH \DIFdelbegin \DIFdel{Fluid Simulation}\DIFdelend \DIFaddbegin \DIFadd{fluid simulation}\DIFaddend }
 
 \DIFdelbegin %DIFDELCMD < \author[1]{%%%
-\DIFdelend \DIFaddbegin \author[2]{\DIFaddend Xiaokun Wang*}
+\DIFdelend \DIFaddbegin \author[2]{\DIFaddend Yanrui Xu}
 
-\author[2,3]{Xiaojuan Ban*}
+\DIFdelbegin %DIFDELCMD < \author[1]{%%%
+\DIFdelend \DIFaddbegin \author[2]{\DIFaddend Chongming Song}
 
-\author[1]{Jiamin Wang}
+\DIFdelbegin %DIFDELCMD < \author[1]{%%%
+\DIFdelend \DIFaddbegin \author[2,3]{\DIFaddend Xiaokun Wang*}
+
+\DIFdelbegin %DIFDELCMD < \author[2,3]{%%%
+\DIFdelend \DIFaddbegin \author[1,2,4]{\DIFaddend Xiaojuan Ban*}
+
+\DIFdelbegin %DIFDELCMD < \author[1]{%%%
+\DIFdelend \DIFaddbegin \author[2]{\DIFaddend Jiamin Wang}
 
 \DIFdelbegin %DIFDELCMD < \author[1]{%%%
 \DIFdelend \DIFaddbegin \author[2]{\DIFaddend Yalan Zhang}
 
-\author[4]{Jian Chang}
+\DIFdelbegin %DIFDELCMD < \author[4]{%%%
+\DIFdelend \DIFaddbegin \author[5]{\DIFaddend Jian Chang}
 
 \authormark{Yanrui Xu \textsc{et al}}
 
-
 \DIFdelbegin %DIFDELCMD < \address[1]{\orgdiv{School of Computer and Communication Engineering}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
 %DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \address[1]{\orgdiv{School of Intelligence Science and Technology}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
+\DIFdelend \DIFaddbegin \address[1]{\orgdiv{Beijing Advanced Innovation Center for Materials Genome Engineering}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
 \DIFaddend 
 
-\address[2]{\orgdiv{Institute of Artificial Intelligence}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
+\DIFdelbegin %DIFDELCMD < \address[2]{\orgdiv{Institute of Artificial Intelligence}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \address[2]{\orgdiv{School of Intelligence Science and Technology}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
+\DIFaddend 
 
 \address[3]{\orgdiv{Beijing Key Laboratory of Knowledge Engineering for Materials Science},
 \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
 
-\address[4]{
+\DIFdelbegin %DIFDELCMD < \address[4]{
+%DIFDELCMD < \orgname{Bournemouth University}, \orgaddress{\state{Poole}, \country{United Kingdom}}}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \address[4]{\orgdiv{Key Laboratory of Perception and Control of Intelligent Bionic Unmanned Systems, Ministry of Education}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
+
+\address[5]{
 \orgname{Bournemouth University}, \orgaddress{\state{Poole}, \country{United Kingdom}}}
+\DIFaddend 
 
 \corres{*Xiaokun Wang, *Xiaojuan Ban, University of Science and Technology Beijing. \email{wangxiaokun@ustb.edu.cn, banxj@ustb.edu.cn}}
 
-\fundingInfo{Horizon 2020-Marie Skłodowska-Curie Action-Individual Fellowships (No.895941), National Key Research and Development Program of China (No.2020YFB0704501), National Natural Science Foundation of China (No.61873299), Key Research and Development Project of Hainan Province (No.ZDYF2020031)}
+\DIFdelbegin %DIFDELCMD < \fundingInfo{Horizon 2020-Marie Skłodowska-Curie Action-Individual Fellowships (No.895941), National Key Research and Development Program of China (No.2020YFB0704501), National Natural Science Foundation of China (No.61873299), Key Research and Development Project of Hainan Province (No.ZDYF2020031)}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \fundingInfo{Horizon 2020-Marie Skłodowska-Curie Action-Individual Fellowships (No.895941), National Natural Science Foundation of China (No.61873299), Key Research and Development Project of Hainan Province (No.ZDYF2020031)}
+\DIFaddend 
 
 % \presentaddress{This is sample for present address text this is sample for present address text}
 
@@ -140,26 +156,46 @@ Experiments show that our method can refine fluid-solid coupling details more ef
 \begin{figure*}[htbp]
 
 \centering
-\subfigure[Surface-based refinement]{
+\DIFdelbeginFL %DIFDELCMD < \subfigure[Surface-based refinement]{
+%DIFDELCMD < \centering
+%DIFDELCMD < \begin{overpic}[width=0.31\textwidth]{figure/refine_schem/surface.png}
+%DIFDELCMD < \put (70,51) {refined}
+%DIFDELCMD < \end{overpic}
+%DIFDELCMD < \label{fig:refine_surface}}
+%DIFDELCMD < \subfigure[Our boundary refinement.]{
+%DIFDELCMD < \centering
+%DIFDELCMD < \begin{overpic}[width=0.31\textwidth]{figure/refine_schem/bound.png}
+%DIFDELCMD < \put (2,52) {refined}
+%DIFDELCMD < \put (65,59) {not refined}
+%DIFDELCMD < \end{overpic}
+%DIFDELCMD < \label{fig:refine_bound}}
+%DIFDELCMD < \subfigure[Ours + surface-based.]{
+%DIFDELCMD < \centering
+%DIFDELCMD < \begin{overpic}[width=0.31\textwidth]{figure/refine_schem/union.png}
+%DIFDELCMD < \put (60,56) {refined}
+%DIFDELCMD < \end{overpic}
+%DIFDELCMD < \label{fig:refine_union}}
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \subfigure[Surface-based refinement]{
 \centering
-\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/surface.png}
+\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/surface.jpg}
 \put (70,51) {refined}
 \end{overpic}
 \label{fig:refine_surface}}
 \subfigure[Our boundary refinement.]{
 \centering
-\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/bound.png}
+\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/bound.jpg}
 \put (2,52) {refined}
 \put (65,59) {not refined}
 \end{overpic}
 \label{fig:refine_bound}}
 \subfigure[Ours + surface-based.]{
 \centering
-\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/union.png}
+\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/union.jpg}
 \put (60,56) {refined}
 \end{overpic}
 \label{fig:refine_union}}
-\vspace{-0.7\baselineskip}
+\DIFaddendFL \vspace{-0.7\baselineskip}
 \caption{Contrary to the previous surface-based refinement method (a), our method (b) refines fluid particles near boundary objects to allow \DIFdelbeginFL \DIFdelFL{for }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL fine-scale fluid-boundary coupling to enhance boundary coupling details. Our method can also be combined with the surface-based method to refine \DIFdelbeginFL \DIFdelFL{both }\DIFdelendFL near the boundary and the surface (c).}
 \label{fig:refine}
 
@@ -183,36 +219,66 @@ SPH~\cite{Koschier19} is a Lagrangian fluid simulation method that possesses the
 \begin{figure*}[t]
 
 \centering
-\subfigure{
+\DIFdelbeginFL %DIFDELCMD < \subfigure{
+%DIFDELCMD < \centering
+%DIFDELCMD < \includegraphics[width=0.31\textwidth]{figure/rod/fine210.png}
+%DIFDELCMD < }
+%DIFDELCMD < \subfigure{
+%DIFDELCMD < \centering
+%DIFDELCMD < \includegraphics[width=0.31\textwidth]{figure/rod/mark215.png}
+%DIFDELCMD < }
+%DIFDELCMD < \subfigure{
+%DIFDELCMD < \centering
+%DIFDELCMD < \includegraphics[width=0.31\textwidth]{figure/rod/surface215.png}
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \subfigure{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/rod/fine210.png}
+\includegraphics[width=0.31\textwidth]{figure/rod/fine210.jpg}
 }
 \subfigure{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/rod/mark215.png}
+\includegraphics[width=0.31\textwidth]{figure/rod/mark215.jpg}
 }
 \subfigure{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/rod/surface215.png}
+\includegraphics[width=0.31\textwidth]{figure/rod/surface215.jpg}
 }
+\DIFaddendFL 
 
 \setcounter{subfigure}{0}
-\subfigure[High-resolution ($r=0.063\textrm{m}$).]{
+\DIFdelbeginFL %DIFDELCMD < \subfigure[High-resolution ($r=0.063\textrm{m}$).]{
+%DIFDELCMD < \centering
+%DIFDELCMD < \includegraphics[width=0.31\textwidth]{figure/rod_side/fine210.png}
+%DIFDELCMD < \label{fig:rod_fine}
+%DIFDELCMD < }
+%DIFDELCMD < \subfigure[Ours, $\tau^{max}_{cylinder} = 21$.]{
+%DIFDELCMD < \centering
+%DIFDELCMD < \includegraphics[width=0.31\textwidth]{figure/rod_side/mark215.png}
+%DIFDELCMD < \label{fig:rod_mark}
+%DIFDELCMD < }
+%DIFDELCMD < \subfigure[Surface-based~\cite{Winchenbach17}.]{
+%DIFDELCMD < \centering
+%DIFDELCMD < \includegraphics[width=0.31\textwidth]{figure/rod_side/surface215.png}
+%DIFDELCMD < \label{fig:rod_surface}
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \subfigure[High-resolution ($r=0.063\textrm{m}$).]{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/rod_side/fine210.png}
+\includegraphics[width=0.31\textwidth]{figure/rod_side/fine210.jpg}
 \label{fig:rod_fine}
 }
 \subfigure[Ours, $\tau^{max}_{cylinder} = 21$.]{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/rod_side/mark215.png}
+\includegraphics[width=0.31\textwidth]{figure/rod_side/mark215.jpg}
 \label{fig:rod_mark}
 }
 \subfigure[Surface-based~\cite{Winchenbach17}.]{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/rod_side/surface215.png}
+\includegraphics[width=0.31\textwidth]{figure/rod_side/surface215.jpg}
 \label{fig:rod_surface}
 }
-\vspace{-0.7\baselineskip}
+\DIFaddendFL \vspace{-0.7\baselineskip}
 \caption{
 Cylinder moving experiment, where the cylinder moves horizontally in the tank. The first row is the vertical view; the second row is a cross-section of the side view. \DIFdelbeginFL \DIFdelFL{Adaptive methods use max particle size $r_{base} = 0.2$ and $\alpha = 32$. }\DIFdelendFL Our method better reproduces the jagged (vertical view) and curved (side view) wave patterns in the high-resolution simulation. %DIF < A cylinder moves horizontally through a water tank, creating a wave pattern behind. The first row is the vertical view; the second row is a cross-section of the side view. Each particle is colour-coded according to its initial position (left: yellow, right: blue) with respect to the cross-section.
 %DIF < We use $\tau^{max}_{rod} = 21$ in our method to prevent wake flow merging during the entire simulation. 
@@ -297,16 +363,26 @@ where $m^{opt}$ is the optimal mass that is the desired mass for the particle. $
 
 \begin{figure}[b]
     \centering
-    \subfigure[Splitting]{
-        \includegraphics[width=0.29\columnwidth]{figure/split_schem/split.png}
+    \DIFdelbeginFL %DIFDELCMD < \subfigure[Splitting]{
+%DIFDELCMD <         \includegraphics[width=0.29\columnwidth]{figure/split_schem/split.png}
+%DIFDELCMD <     }
+%DIFDELCMD <     \subfigure[Merging]{
+%DIFDELCMD <         \includegraphics[width=0.29\columnwidth]{figure/split_schem/merge.png}
+%DIFDELCMD <     }
+%DIFDELCMD <     \subfigure[Redistribution]{
+%DIFDELCMD <         \includegraphics[width=0.29\columnwidth]{figure/split_schem/redistribute.png}
+%DIFDELCMD <     }
+%DIFDELCMD <     %%%
+\DIFdelendFL \DIFaddbeginFL \subfigure[Splitting]{
+        \includegraphics[width=0.29\columnwidth]{figure/split_schem/split.jpg}
     }
     \subfigure[Merging]{
-        \includegraphics[width=0.29\columnwidth]{figure/split_schem/merge.png}
+        \includegraphics[width=0.29\columnwidth]{figure/split_schem/merge.jpg}
     }
     \subfigure[Redistribution]{
-        \includegraphics[width=0.29\columnwidth]{figure/split_schem/redistribute.png}
+        \includegraphics[width=0.29\columnwidth]{figure/split_schem/redistribute.jpg}
     }
-    \vspace{-0.7\baselineskip}
+    \DIFaddendFL \vspace{-0.7\baselineskip}
     \caption{Schematic diagram of particle splitting, merging and redistribution.}
     \label{fig:split_schem}
 \end{figure}
@@ -341,27 +417,48 @@ In the local viscosity technique, the viscosity coefficient $\upsilon$ in Eqn.~\
 
 \begin{figure*}
     \centering
-    \subfigure[Ours, $\tau_{boat}^{max}=0$.]{
-    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/bound.png}
+    \DIFdelbeginFL %DIFDELCMD < \subfigure[Ours, $\tau_{boat}^{max}=0$.]{
+%DIFDELCMD <     \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/bound.png}
+%DIFDELCMD <     \label{fig:ship_our}
+%DIFDELCMD <     }
+%DIFDELCMD <     \subfigure[Ours, $\tau_{boat}^{max}=1$.]{
+%DIFDELCMD <     \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/mark.png}
+%DIFDELCMD <     \label{fig:ship_mark}
+%DIFDELCMD <     }
+%DIFDELCMD <     \subfigure[Surface-based~\cite{Winchenbach17}.]{
+%DIFDELCMD <     \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/surface.png}
+%DIFDELCMD <     \label{fig:ship_w17}
+%DIFDELCMD <     }
+%DIFDELCMD <     \subfigure[Low-resolution.]{
+%DIFDELCMD <     \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/coarse.png}
+%DIFDELCMD <     \label{fig:ship_2}
+%DIFDELCMD <     }
+%DIFDELCMD <     \subfigure[High-resolution.]{
+%DIFDELCMD <     \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/fine.png}
+%DIFDELCMD <     \label{fig:ship_063}
+%DIFDELCMD <     }
+%DIFDELCMD <     %%%
+\DIFdelendFL \DIFaddbeginFL \subfigure[Ours, $\tau_{boat}^{max}=0$.]{
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/bound.jpg}
     \label{fig:ship_our}
     }
     \subfigure[Ours, $\tau_{boat}^{max}=1$.]{
-    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/mark.png}
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/mark.jpg}
     \label{fig:ship_mark}
     }
     \subfigure[Surface-based~\cite{Winchenbach17}.]{
-    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/surface.png}
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/surface.jpg}
     \label{fig:ship_w17}
     }
     \subfigure[Low-resolution.]{
-    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/coarse.png}
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/coarse.jpg}
     \label{fig:ship_2}
     }
     \subfigure[High-resolution.]{
-    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/fine.png}
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/fine.jpg}
     \label{fig:ship_063}
     }
-    \caption{Surface reconstruction result of \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL boat-sailing experiment: (a), (b) and (c) are adaptive simulations using max particle size $r_{base} = 0.2$ and adaptive ratio $\alpha = 32$; (d) and (e) are uniform scale simulations with $r = 0.2$ and $r = 0.063$.}
+    \DIFaddendFL \caption{Surface reconstruction result of \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL boat-sailing experiment: (a), (b) and (c) are adaptive simulations using max particle size $r_{base} = 0.2$ and adaptive ratio $\alpha = 32$; (d) and (e) are uniform scale simulations with $r = 0.2$ and $r = 0.063$.}
     \label{fig:ship_reconstruct}
 \end{figure*}
 
@@ -484,20 +581,30 @@ and to refine both near the boundary region and the fluid surface, one should su
 \begin{figure*}[htpb]
     \centering
     \subfigure[Ours, $\tau_{boat}^{max} = 0$.] { 
-        \includegraphics[width=0.31\textwidth]{figure/ship/bound90.png} 
-    } 
+        \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.31\textwidth]{figure/ship/bound90.png} 
+%DIFDELCMD <     %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.31\textwidth]{figure/ship/bound90.jpg} 
+    \DIFaddendFL } 
     \subfigure[Ours, $\tau_{boat}^{max} = 1$.] {  
-        \includegraphics[width=0.31\textwidth]{figure/ship/mark90.png} 
-    } 
+        \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.31\textwidth]{figure/ship/mark90.png} 
+%DIFDELCMD <     %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.31\textwidth]{figure/ship/mark90.jpg} 
+    \DIFaddendFL } 
     \subfigure[Surface-based~\cite{Winchenbach17}.] {  
-        \includegraphics[width=0.31\textwidth]{figure/ship/surface90.png} 
-    } 
+        \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.31\textwidth]{figure/ship/surface90.png} 
+%DIFDELCMD <     %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.31\textwidth]{figure/ship/surface90.jpg} 
+    \DIFaddendFL } 
     \subfigure[Low-resolution ($r = 0.2\mathrm{m}$).] { 
-        \includegraphics[width=0.31\textwidth]{figure/ship/coarse90.png} 
-    } 
+        \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.31\textwidth]{figure/ship/coarse90.png} 
+%DIFDELCMD <     %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.31\textwidth]{figure/ship/coarse90.jpg} 
+    \DIFaddendFL } 
     \subfigure[High-resolution ($r = 0.063\mathrm{m}$).] { 
-        \includegraphics[width=0.31\textwidth]{figure/ship/fine90.png} 
-    } 
+        \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=0.31\textwidth]{figure/ship/fine90.png} 
+%DIFDELCMD <     %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=0.31\textwidth]{figure/ship/fine90.jpg} 
+    \DIFaddendFL } 
     \vspace{-0.7\baselineskip}
     \caption{Boat-sailing experiment. Adaptive methods use $r_{base} = 0.2$ and $\alpha = 32$.}
     \label{fig:ship}
@@ -570,15 +677,24 @@ Fig.\ref{fig:ship_reconstruct} and Fig.\ref{fig:ship} show the experimental resu
 
 \begin{figure*}
     \centering
-    \subfigure[Boat-sailing experiment.]{
-    \includegraphics[width=0.635\textwidth]{figure/data/ship.png}
+    \DIFdelbeginFL %DIFDELCMD < \subfigure[Boat-sailing experiment.]{
+%DIFDELCMD <     \includegraphics[width=0.635\textwidth]{figure/data/ship.png}
+%DIFDELCMD <     \label{fig:ship_data}
+%DIFDELCMD <     }
+%DIFDELCMD <     \subfigure[Cylinder moving experiment.]{
+%DIFDELCMD <     \includegraphics[width=0.3\textwidth]{figure/data/rod_count.png}
+%DIFDELCMD <     \label{fig:rod_count}
+%DIFDELCMD <     }
+%DIFDELCMD <     %%%
+\DIFdelendFL \DIFaddbeginFL \subfigure[Boat-sailing experiment.]{
+    \includegraphics[width=0.635\textwidth]{figure/data/ship.jpg}
     \label{fig:ship_data}
     }
     \subfigure[Cylinder moving experiment.]{
-    \includegraphics[width=0.3\textwidth]{figure/data/rod_count.png}
+    \includegraphics[width=0.3\textwidth]{figure/data/rod_count.jpg}
     \label{fig:rod_count}
     }
-    \vspace{-0.7\baselineskip}
+    \DIFaddendFL \vspace{-0.7\baselineskip}
     \caption{Particle count and time consumption in boat-sailing and cylinder moving experiment. Solid lines denote particle count; dashed lines denote time consumption. One frame equals \DIFdelbeginFL \DIFdelFL{to }\DIFdelendFL $1/24\mathrm{s}$.}
 
 \end{figure*}
@@ -601,22 +717,38 @@ Fig.\ref{fig:prop} shows the particle view of a cross-section of the propeller s
 \begin{figure}[htbp]
 
 \centering
-\subfigure[High-resolution ($r=0.063\textrm{m}$).]{
+\DIFdelbeginFL %DIFDELCMD < \subfigure[High-resolution ($r=0.063\textrm{m}$).]{
+%DIFDELCMD < \centering
+%DIFDELCMD < \includegraphics[width=0.31\textwidth]{figure/prop/fine.png}
+%DIFDELCMD < \label{fig:prop_fine}
+%DIFDELCMD < }
+%DIFDELCMD < \subfigure[Ours + surface-based~\cite{Winchenbach17}.]{
+%DIFDELCMD < \centering
+%DIFDELCMD < \includegraphics[width=0.31\textwidth]{figure/prop/union.png}
+%DIFDELCMD < \label{fig:prop_union}
+%DIFDELCMD < }
+%DIFDELCMD < \subfigure[Only surface-based.]{
+%DIFDELCMD < \centering
+%DIFDELCMD < \includegraphics[width=0.31\textwidth]{figure/prop/surface.png}
+%DIFDELCMD < \label{fig:prop_surface}
+%DIFDELCMD < }
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \subfigure[High-resolution ($r=0.063\textrm{m}$).]{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/prop/fine.png}
+\includegraphics[width=0.31\textwidth]{figure/prop/fine.jpg}
 \label{fig:prop_fine}
 }
 \subfigure[Ours + surface-based~\cite{Winchenbach17}.]{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/prop/union.png}
+\includegraphics[width=0.31\textwidth]{figure/prop/union.jpg}
 \label{fig:prop_union}
 }
 \subfigure[Only surface-based.]{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/prop/surface.png}
+\includegraphics[width=0.31\textwidth]{figure/prop/surface.jpg}
 \label{fig:prop_surface}
 }
-\vspace{-0.7\baselineskip}
+\DIFaddendFL \vspace{-0.7\baselineskip}
 \caption{
 A cross-section of the propeller spinning experiment where colour denotes velocity. Adaptive methods use $r_{base} = 0.1$, $\alpha = 32$, $\tau^{max}_{propeller} = 0$. In the zoomed-in areas, our method (b) generates a more detailed vortex compared to (c), closer to the high-resolution result (a).
 % Propeller spinning experiment where a propeller rotates in the fluid. A cross-section of the fluid is displayed. Particle colour denotes velocity. Compared to the surface-based method (c), our method (b) generates a vortex (the zoomed-in area) with finer details, which is also more similar to the high-resolution simulation (a).
@@ -637,27 +769,27 @@ A cross-section of the propeller spinning experiment where colour denotes veloci
     \centering
     \subfigure[Our method without wake flow preservation ($\tau_{box}^{max} = 0$).]{
 
-    \begin{overpic}[width=0.155\textwidth]{figure/box/box_schem_bound2.png}
+    \begin{overpic}[width=0.155\textwidth]{figure/box/box_schem_bound2.jpg}
     \put (19,17) {\footnotesize refine}
     \put (60,12) {\footnotesize fluid}
     \put (22,29.5) {\footnotesize box}
     \end{overpic}
-    \includegraphics[width=0.27\textwidth]{figure/box/bound1.png}
-    \includegraphics[width=0.27\textwidth]{figure/box/bound4.png}
-    \includegraphics[width=0.27\textwidth]{figure/box/bound5.png}
+    \includegraphics[width=0.27\textwidth]{figure/box/bound1.jpg}
+    \includegraphics[width=0.27\textwidth]{figure/box/bound4.jpg}
+    \includegraphics[width=0.27\textwidth]{figure/box/bound5.jpg}
     \label{fig:box_bound}
     }
     \subfigure[Our method with wake flow preservation ($\tau_{box}^{max} = 1$).]{
 
-    \begin{overpic}[width=0.155\textwidth]{figure/box/box_schem_mark2.png}
+    \begin{overpic}[width=0.155\textwidth]{figure/box/box_schem_mark2.jpg}
     \put (19,17) {\footnotesize refine}
     \put (40,8.5) {\footnotesize fluid}
     \put (22,29.5) {\footnotesize box}
     \put (50,17) {\footnotesize wake flow}
     \end{overpic}
-    \includegraphics[width=0.27\textwidth]{figure/box/mark1.png}
-    \includegraphics[width=0.27\textwidth]{figure/box/mark4.png}
-    \includegraphics[width=0.27\textwidth]{figure/box/mark5.png}
+    \includegraphics[width=0.27\textwidth]{figure/box/mark1.jpg}
+    \includegraphics[width=0.27\textwidth]{figure/box/mark4.jpg}
+    \includegraphics[width=0.27\textwidth]{figure/box/mark5.jpg}
     \label{fig:box_mark}
     }
     \vspace{-0.7\baselineskip}
@@ -679,11 +811,11 @@ A cross-section of the propeller spinning experiment where colour denotes veloci
 \begin{figure*}[h]
     \centering
     \subfigure[Boat-sailing experiment.]{
-    \includegraphics[width=0.635\textwidth]{figure/data/ship_energy.png}
+    \includegraphics[width=0.635\textwidth]{figure/data/ship_energy.jpg}
     \label{fig:ship_energy}
     }
     \subfigure[Moving box experiment.]{
-    \includegraphics[width=0.3\textwidth]{figure/data/energy_box.png}
+    \includegraphics[width=0.3\textwidth]{figure/data/energy_box.jpg}
     \label{fig:energy_box}
     }
     \vspace{-0.7\baselineskip}
@@ -722,7 +854,7 @@ A limitation of our method is that when a \DIFdelbegin \DIFdel{solitary }\DIFdel
 % \end{figure}
 
 \section*{Acknowledgement}
-This research was funded by: Horizon 2020-Marie Skłodowska-Curie Action-Individual Fellowships (No.895941), National Key Research and Development Program of China (No.2020YFB0704501), National Natural Science Foundation of China (No.61873299), Key Research and Development Project of Hainan Province (No.ZDYF2020031).
+This research was funded by: Horizon 2020-Marie Skłodowska-Curie Action-Individual Fellowships (No.895941), National \DIFdelbegin \DIFdel{Key Research and Development Program of China (No.2020YFB0704501), National }\DIFdelend Natural Science Foundation of China (No.61873299), Key Research and Development Project of Hainan Province (No.ZDYF2020031).
 
 \nocite{*}% Show all bib entries - both cited and uncited; comment this line to view only cited bib entries;
 \bibliography{example}
@@ -731,40 +863,49 @@ This research was funded by: Horizon 2020-Marie Skłodowska-Curie Action-Individ
 
 \DIFdelbegin %DIFDELCMD < \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YanruiXu.jpg}}{\textbf{Yanrui Xu} is a Ph.D. student in Computer Science and Technology at University of Science and Technology Beijing. He received a Master's degree in University of Science and Technology Beijing, in 2020. His research field is computer graphics, especially physically-based fluid simulation.}
 %DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YanruiXu.jpg}}{\textbf{Yanrui Xu} is a Ph.D. student in Intelligence Science and Technology at University of Science and Technology Beijing. He received a Master's degree in University of Science and Technology Beijing, in 2020. His research field is computer graphics, especially physically-based fluid simulation.}
+\DIFdelend \DIFaddbegin \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YanruiXu.jpg}}{\textbf{Yanrui Xu} is a PhD student at the School of Intelligence Science and Technology, University of Science and Technology Beijing. 
+    %
+    He received his Master's degree from the University of Science and Technology Beijing in 2020. 
+    %
+    His research interests include physical-based simulation and fluid animation.}
 \DIFaddend \end{biography}
 
 \vspace{7ex}
 
 \DIFdelbegin %DIFDELCMD < \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/ChongmingSong.JPG}}{\textbf{Chongming Song} is a postgraduate student in Computer Science and Technology at University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
 %DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/ChongmingSong.JPG}}{\textbf{Chongming Song} is a postgraduate student in Intelligence Science and Technology at University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
+\DIFdelend \DIFaddbegin \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/ChongmingSong.JPG}}{\textbf{Chongming Song} is a postgraduate student  at the School of Intelligence Science and Technology, University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
 \DIFaddend \end{biography}
 
 \vspace{7ex}
 
 \DIFdelbegin %DIFDELCMD < \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/XiaokunWang.jpg}}{\textbf{Xiaokun Wang} is an associate professor in School of Computer and Communication Engineering, University of Science and Technology Beijing, China. He received a Ph.D. degree in Computer Science and Technology from University of Science and Technology Beijing, in 2017. His research interests include computer graphics, virtual reality and human-computer interaction.}
 %DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/XiaokunWang.jpg}}{\textbf{Xiaokun Wang} is an associate professor in Institute of Artificial Intelligence, University of Science and Technology Beijing, China. He received a Ph.D. degree in Computer Science and Technology from University of Science and Technology Beijing, in 2017. His research interests include computer graphics, virtual reality and human-computer interaction.}
+\DIFdelend \DIFaddbegin \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/XiaokunWang.jpg}}{\textbf{Xiaokun Wang} is an associate professor in Intelligence Science and Technology, University of Science and Technology Beijing, China. He received a Ph.D. degree in Computer Science and Technology from the University of Science and Technology Beijing, in 2017. He is currently working at the National Centre for Computer Animation at Bournemouth University funded by the EU's Horizon 2020 Marie Curie Individual Fellowship. His research interests include computer graphics, virtual reality and human-computer interaction.}
 \DIFaddend \end{biography}
 
 \vspace{4.15ex}
 
-\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/XiaojuanBan.png}}{\textbf{Xiaojuan Ban} is a professor in Artificial Intelligence and leader of the Computer Animation Group at University of Science and Technology Beijing, China. She received her master's degree in computer application and Ph.D. degree in control theory and control engineering from the University of Science and Technology Beijing. Her research interests include computer graphics, artificial intelligence, human-computer interaction, big data analysis and 3D visualization.}
-\end{biography}
-
-\vspace{1.3ex}
-
-\DIFdelbegin %DIFDELCMD < \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/JiaminWang.jpg}}{\textbf{Jiamin Wang} is a postgraduate student in Computer Science and Technology at University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
+\DIFdelbegin %DIFDELCMD < \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/XiaojuanBan.png}}{\textbf{Xiaojuan Ban} is a professor in Artificial Intelligence and leader of the Computer Animation Group at University of Science and Technology Beijing, China. She received her master's degree in computer application and Ph.D. degree in control theory and control engineering from the University of Science and Technology Beijing. Her research interests include computer graphics, artificial intelligence, human-computer interaction, big data analysis and 3D visualization.}
 %DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/JiaminWang.jpg}}{\textbf{Jiamin Wang} is a postgraduate student in Intelligence Science and Technology at University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
+\DIFdelend \DIFaddbegin \begin{biography}{
+\vspace{4ex}
+\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/XiaojuanBan.jpg}}{\textbf{Xiaojuan Ban} is a professor at the School of Intelligence Science and Technology, University of Science and Technology Beijing. She is the leader of the Artificial Intelligence and 3D Visualization Group at University of Science and Technology Beijing, China. She received her master's degree in computer application and Ph.D. degree in control theory and control engineering from the University of Science and Technology Beijing. Her research interests include computer graphics, artificial intelligence, human-computer interaction, big data analysis and 3D visualization.}
+\DIFaddend \end{biography}
+
+\DIFdelbegin %DIFDELCMD < \vspace{1.3ex}
+%DIFDELCMD < 
+
+%DIFDELCMD < \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/JiaminWang.jpg}}{\textbf{Jiamin Wang} is a postgraduate student in Computer Science and Technology at University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/JiaminWang.jpg}}{\textbf{Jiamin Wang} is a PhD student  at the School of Intelligence Science and Technology, University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
 \DIFaddend \end{biography}
 
 \vspace{7ex}
 
 \DIFdelbegin %DIFDELCMD < \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YalanZhang.jpg}}{\textbf{Yalan Zhang} received her Ph.D. degree in Computer Science and Technology from University of Science and Technology Beijing, China, in 2020. Currently, she is a lecturer at University of Science and Technology Beijing. Her research interests include computer graphics, 3-D visualization and computer vision.}
 %DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YalanZhang.jpg}}{\textbf{Yalan Zhang} received her Ph.D. degree in Computer Science and Technology from University of Science and Technology Beijing, China, in 2020. Currently, she is a lecturer in Institute of Artificial Intelligence, University of Science and Technology Beijing. Her research interests include computer graphics, 3-D visualization and computer vision.}
+\DIFdelend \DIFaddbegin \begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YalanZhang.jpg}}{\textbf{Yalan Zhang} received her PhD degree in Computer Science and Technology from University of Science and Technology Beijing, China, in 2020. Currently, she is a lecturer in School of Intelligence Science and Technology, University of Science and Technology Beijing. Her research interests include computer graphics, 3-D visualization and computer vision.}
 \DIFaddend \end{biography}
 
 \vspace{7ex}
