@@ -17,38 +17,39 @@
 
 % \title{This is the sample article title\protect\thanks{This is an example for title footnote.}}
 
-\title{Spatial Adaptivity with Boundary Refinement for SPH Fluid Simulation}
+\title{Spatial adaptivity with boundary refinement for SPH fluid simulation}
 
-\author[1]{Yanrui Xu}
+\author[2]{Yanrui Xu}
 
-\author[1]{Chongming Song}
+\author[2]{Chongming Song}
 
-\author[2]{Xiaokun Wang*}
+\author[2,3]{Xiaokun Wang*}
 
-\author[2,3]{Xiaojuan Ban*}
+\author[1,2,4]{Xiaojuan Ban*}
 
-\author[1]{Jiamin Wang}
+\author[2]{Jiamin Wang}
 
 \author[2]{Yalan Zhang}
 
-\author[4]{Jian Chang}
+\author[5]{Jian Chang}
 
 \authormark{Yanrui Xu \textsc{et al}}
 
+\address[1]{\orgdiv{Beijing Advanced Innovation Center for Materials Genome Engineering}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
 
-\address[1]{\orgdiv{School of Intelligence Science and Technology}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
-
-\address[2]{\orgdiv{Institute of Artificial Intelligence}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
+\address[2]{\orgdiv{School of Intelligence Science and Technology}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
 
 \address[3]{\orgdiv{Beijing Key Laboratory of Knowledge Engineering for Materials Science},
 \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
 
-\address[4]{
+\address[4]{\orgdiv{Key Laboratory of Perception and Control of Intelligent Bionic Unmanned Systems, Ministry of Education}, \orgname{University of Science and Technology Beijing}, \orgaddress{\state{Beijing}, \country{China}}}
+
+\address[5]{
 \orgname{Bournemouth University}, \orgaddress{\state{Poole}, \country{United Kingdom}}}
 
 \corres{*Xiaokun Wang, *Xiaojuan Ban, University of Science and Technology Beijing. \email{wangxiaokun@ustb.edu.cn, banxj@ustb.edu.cn}}
 
-\fundingInfo{Horizon 2020-Marie Skłodowska-Curie Action-Individual Fellowships (No.895941), National Key Research and Development Program of China (No.2020YFB0704501), National Natural Science Foundation of China (No.61873299), Key Research and Development Project of Hainan Province (No.ZDYF2020031)}
+\fundingInfo{Horizon 2020-Marie Skłodowska-Curie Action-Individual Fellowships (No.895941), National Natural Science Foundation of China (No.61873299), Key Research and Development Project of Hainan Province (No.ZDYF2020031)}
 
 % \presentaddress{This is sample for present address text this is sample for present address text}
 
@@ -83,20 +84,20 @@ Experiments show that our method can refine fluid-solid coupling details more ef
 \centering
 \subfigure[Surface-based refinement]{
 \centering
-\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/surface.png}
+\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/surface.jpg}
 \put (70,51) {refined}
 \end{overpic}
 \label{fig:refine_surface}}
 \subfigure[Our boundary refinement.]{
 \centering
-\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/bound.png}
+\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/bound.jpg}
 \put (2,52) {refined}
 \put (65,59) {not refined}
 \end{overpic}
 \label{fig:refine_bound}}
 \subfigure[Ours + surface-based.]{
 \centering
-\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/union.png}
+\begin{overpic}[width=0.31\textwidth]{figure/refine_schem/union.jpg}
 \put (60,56) {refined}
 \end{overpic}
 \label{fig:refine_union}}
@@ -126,31 +127,31 @@ SPH~\cite{Koschier19} is a Lagrangian fluid simulation method that possesses the
 \centering
 \subfigure{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/rod/fine210.png}
+\includegraphics[width=0.31\textwidth]{figure/rod/fine210.jpg}
 }
 \subfigure{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/rod/mark215.png}
+\includegraphics[width=0.31\textwidth]{figure/rod/mark215.jpg}
 }
 \subfigure{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/rod/surface215.png}
+\includegraphics[width=0.31\textwidth]{figure/rod/surface215.jpg}
 }
 
 \setcounter{subfigure}{0}
 \subfigure[High-resolution ($r=0.063\textrm{m}$).]{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/rod_side/fine210.png}
+\includegraphics[width=0.31\textwidth]{figure/rod_side/fine210.jpg}
 \label{fig:rod_fine}
 }
 \subfigure[Ours, $\tau^{max}_{cylinder} = 21$.]{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/rod_side/mark215.png}
+\includegraphics[width=0.31\textwidth]{figure/rod_side/mark215.jpg}
 \label{fig:rod_mark}
 }
 \subfigure[Surface-based~\cite{Winchenbach17}.]{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/rod_side/surface215.png}
+\includegraphics[width=0.31\textwidth]{figure/rod_side/surface215.jpg}
 \label{fig:rod_surface}
 }
 \vspace{-0.7\baselineskip}
@@ -236,13 +237,13 @@ where $m^{opt}$ is the optimal mass that is the desired mass for the particle. $
 \begin{figure}[b]
     \centering
     \subfigure[Splitting]{
-        \includegraphics[width=0.29\columnwidth]{figure/split_schem/split.png}
+        \includegraphics[width=0.29\columnwidth]{figure/split_schem/split.jpg}
     }
     \subfigure[Merging]{
-        \includegraphics[width=0.29\columnwidth]{figure/split_schem/merge.png}
+        \includegraphics[width=0.29\columnwidth]{figure/split_schem/merge.jpg}
     }
     \subfigure[Redistribution]{
-        \includegraphics[width=0.29\columnwidth]{figure/split_schem/redistribute.png}
+        \includegraphics[width=0.29\columnwidth]{figure/split_schem/redistribute.jpg}
     }
     \vspace{-0.7\baselineskip}
     \caption{Schematic diagram of particle splitting, merging and redistribution.}
@@ -280,23 +281,23 @@ In the local viscosity technique, the viscosity coefficient $\upsilon$ in Eqn.~\
 \begin{figure*}
     \centering
     \subfigure[Ours, $\tau_{boat}^{max}=0$.]{
-    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/bound.png}
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/bound.jpg}
     \label{fig:ship_our}
     }
     \subfigure[Ours, $\tau_{boat}^{max}=1$.]{
-    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/mark.png}
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/mark.jpg}
     \label{fig:ship_mark}
     }
     \subfigure[Surface-based~\cite{Winchenbach17}.]{
-    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/surface.png}
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/surface.jpg}
     \label{fig:ship_w17}
     }
     \subfigure[Low-resolution.]{
-    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/coarse.png}
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/coarse.jpg}
     \label{fig:ship_2}
     }
     \subfigure[High-resolution.]{
-    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/fine.png}
+    \includegraphics[width=0.18\textwidth]{figure/ship_reconstruct/fine.jpg}
     \label{fig:ship_063}
     }
     \caption{Surface reconstruction result of the boat-sailing experiment: (a), (b) and (c) are adaptive simulations using max particle size $r_{base} = 0.2$ and adaptive ratio $\alpha = 32$; (d) and (e) are uniform scale simulations with $r = 0.2$ and $r = 0.063$.}
@@ -420,19 +421,19 @@ and to refine both near the boundary region and the fluid surface, one should su
 \begin{figure*}[htpb]
     \centering
     \subfigure[Ours, $\tau_{boat}^{max} = 0$.] { 
-        \includegraphics[width=0.31\textwidth]{figure/ship/bound90.png} 
+        \includegraphics[width=0.31\textwidth]{figure/ship/bound90.jpg} 
     } 
     \subfigure[Ours, $\tau_{boat}^{max} = 1$.] {  
-        \includegraphics[width=0.31\textwidth]{figure/ship/mark90.png} 
+        \includegraphics[width=0.31\textwidth]{figure/ship/mark90.jpg} 
     } 
     \subfigure[Surface-based~\cite{Winchenbach17}.] {  
-        \includegraphics[width=0.31\textwidth]{figure/ship/surface90.png} 
+        \includegraphics[width=0.31\textwidth]{figure/ship/surface90.jpg} 
     } 
     \subfigure[Low-resolution ($r = 0.2\mathrm{m}$).] { 
-        \includegraphics[width=0.31\textwidth]{figure/ship/coarse90.png} 
+        \includegraphics[width=0.31\textwidth]{figure/ship/coarse90.jpg} 
     } 
     \subfigure[High-resolution ($r = 0.063\mathrm{m}$).] { 
-        \includegraphics[width=0.31\textwidth]{figure/ship/fine90.png} 
+        \includegraphics[width=0.31\textwidth]{figure/ship/fine90.jpg} 
     } 
     \vspace{-0.7\baselineskip}
     \caption{Boat-sailing experiment. Adaptive methods use $r_{base} = 0.2$ and $\alpha = 32$.}
@@ -492,11 +493,11 @@ To evaluate the efficiency of the proposed method, the particle count and time c
 \begin{figure*}
     \centering
     \subfigure[Boat-sailing experiment.]{
-    \includegraphics[width=0.635\textwidth]{figure/data/ship.png}
+    \includegraphics[width=0.635\textwidth]{figure/data/ship.jpg}
     \label{fig:ship_data}
     }
     \subfigure[Cylinder moving experiment.]{
-    \includegraphics[width=0.3\textwidth]{figure/data/rod_count.png}
+    \includegraphics[width=0.3\textwidth]{figure/data/rod_count.jpg}
     \label{fig:rod_count}
     }
     \vspace{-0.7\baselineskip}
@@ -524,17 +525,17 @@ Fig.\ref{fig:prop} shows the particle view of a cross-section of the propeller s
 \centering
 \subfigure[High-resolution ($r=0.063\textrm{m}$).]{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/prop/fine.png}
+\includegraphics[width=0.31\textwidth]{figure/prop/fine.jpg}
 \label{fig:prop_fine}
 }
 \subfigure[Ours + surface-based~\cite{Winchenbach17}.]{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/prop/union.png}
+\includegraphics[width=0.31\textwidth]{figure/prop/union.jpg}
 \label{fig:prop_union}
 }
 \subfigure[Only surface-based.]{
 \centering
-\includegraphics[width=0.31\textwidth]{figure/prop/surface.png}
+\includegraphics[width=0.31\textwidth]{figure/prop/surface.jpg}
 \label{fig:prop_surface}
 }
 \vspace{-0.7\baselineskip}
@@ -557,27 +558,27 @@ In the surface-based only SPH adaptive mechanism, the sizes of the particles are
     \centering
     \subfigure[Our method without wake flow preservation ($\tau_{box}^{max} = 0$).]{
     
-    \begin{overpic}[width=0.155\textwidth]{figure/box/box_schem_bound2.png}
+    \begin{overpic}[width=0.155\textwidth]{figure/box/box_schem_bound2.jpg}
     \put (19,17) {\footnotesize refine}
     \put (60,12) {\footnotesize fluid}
     \put (22,29.5) {\footnotesize box}
     \end{overpic}
-    \includegraphics[width=0.27\textwidth]{figure/box/bound1.png}
-    \includegraphics[width=0.27\textwidth]{figure/box/bound4.png}
-    \includegraphics[width=0.27\textwidth]{figure/box/bound5.png}
+    \includegraphics[width=0.27\textwidth]{figure/box/bound1.jpg}
+    \includegraphics[width=0.27\textwidth]{figure/box/bound4.jpg}
+    \includegraphics[width=0.27\textwidth]{figure/box/bound5.jpg}
     \label{fig:box_bound}
     }
     \subfigure[Our method with wake flow preservation ($\tau_{box}^{max} = 1$).]{
     
-    \begin{overpic}[width=0.155\textwidth]{figure/box/box_schem_mark2.png}
+    \begin{overpic}[width=0.155\textwidth]{figure/box/box_schem_mark2.jpg}
     \put (19,17) {\footnotesize refine}
     \put (40,8.5) {\footnotesize fluid}
     \put (22,29.5) {\footnotesize box}
     \put (50,17) {\footnotesize wake flow}
     \end{overpic}
-    \includegraphics[width=0.27\textwidth]{figure/box/mark1.png}
-    \includegraphics[width=0.27\textwidth]{figure/box/mark4.png}
-    \includegraphics[width=0.27\textwidth]{figure/box/mark5.png}
+    \includegraphics[width=0.27\textwidth]{figure/box/mark1.jpg}
+    \includegraphics[width=0.27\textwidth]{figure/box/mark4.jpg}
+    \includegraphics[width=0.27\textwidth]{figure/box/mark5.jpg}
     \label{fig:box_mark}
     }
     \vspace{-0.7\baselineskip}
@@ -596,11 +597,11 @@ The particle splitting and merging techniques applied in this paper would also i
 \begin{figure*}[h]
     \centering
     \subfigure[Boat-sailing experiment.]{
-    \includegraphics[width=0.635\textwidth]{figure/data/ship_energy.png}
+    \includegraphics[width=0.635\textwidth]{figure/data/ship_energy.jpg}
     \label{fig:ship_energy}
     }
     \subfigure[Moving box experiment.]{
-    \includegraphics[width=0.3\textwidth]{figure/data/energy_box.png}
+    \includegraphics[width=0.3\textwidth]{figure/data/energy_box.jpg}
     \label{fig:energy_box}
     }
     \vspace{-0.7\baselineskip}
@@ -634,39 +635,43 @@ In the future, we will explore a more stable and accurate particle splitting-mer
 % \end{figure}
 
 \section*{Acknowledgement}
-This research was funded by: Horizon 2020-Marie Skłodowska-Curie Action-Individual Fellowships (No.895941), National Key Research and Development Program of China (No.2020YFB0704501), National Natural Science Foundation of China (No.61873299), Key Research and Development Project of Hainan Province (No.ZDYF2020031).
+This research was funded by: Horizon 2020-Marie Skłodowska-Curie Action-Individual Fellowships (No.895941), National Natural Science Foundation of China (No.61873299), Key Research and Development Project of Hainan Province (No.ZDYF2020031).
 
 \nocite{*}% Show all bib entries - both cited and uncited; comment this line to view only cited bib entries;
 \bibliography{example}
 
 \section*{Author Biography}
 
-\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YanruiXu.jpg}}{\textbf{Yanrui Xu} is a Ph.D. student in Intelligence Science and Technology at University of Science and Technology Beijing. He received a Master's degree in University of Science and Technology Beijing, in 2020. His research field is computer graphics, especially physically-based fluid simulation.}
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YanruiXu.jpg}}{\textbf{Yanrui Xu} is a PhD student at the School of Intelligence Science and Technology, University of Science and Technology Beijing. 
+    %
+    He received his Master's degree from the University of Science and Technology Beijing in 2020. 
+    %
+    His research interests include physical-based simulation and fluid animation.}
 \end{biography}
 
 \vspace{7ex}
 
-\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/ChongmingSong.JPG}}{\textbf{Chongming Song} is a postgraduate student in Intelligence Science and Technology at University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/ChongmingSong.JPG}}{\textbf{Chongming Song} is a postgraduate student  at the School of Intelligence Science and Technology, University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
 \end{biography}
 
 \vspace{7ex}
 
-\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/XiaokunWang.jpg}}{\textbf{Xiaokun Wang} is an associate professor in Institute of Artificial Intelligence, University of Science and Technology Beijing, China. He received a Ph.D. degree in Computer Science and Technology from University of Science and Technology Beijing, in 2017. His research interests include computer graphics, virtual reality and human-computer interaction.}
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/XiaokunWang.jpg}}{\textbf{Xiaokun Wang} is an associate professor in Intelligence Science and Technology, University of Science and Technology Beijing, China. He received a Ph.D. degree in Computer Science and Technology from the University of Science and Technology Beijing, in 2017. He is currently working at the National Centre for Computer Animation at Bournemouth University funded by the EU's Horizon 2020 Marie Curie Individual Fellowship. His research interests include computer graphics, virtual reality and human-computer interaction.}
 \end{biography}
 
 \vspace{4.15ex}
 
-\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/XiaojuanBan.png}}{\textbf{Xiaojuan Ban} is a professor in Artificial Intelligence and leader of the Computer Animation Group at University of Science and Technology Beijing, China. She received her master's degree in computer application and Ph.D. degree in control theory and control engineering from the University of Science and Technology Beijing. Her research interests include computer graphics, artificial intelligence, human-computer interaction, big data analysis and 3D visualization.}
+\begin{biography}{
+\vspace{4ex}
+\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/XiaojuanBan.jpg}}{\textbf{Xiaojuan Ban} is a professor at the School of Intelligence Science and Technology, University of Science and Technology Beijing. She is the leader of the Artificial Intelligence and 3D Visualization Group at University of Science and Technology Beijing, China. She received her master's degree in computer application and Ph.D. degree in control theory and control engineering from the University of Science and Technology Beijing. Her research interests include computer graphics, artificial intelligence, human-computer interaction, big data analysis and 3D visualization.}
 \end{biography}
 
-\vspace{1.3ex}
-
-\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/JiaminWang.jpg}}{\textbf{Jiamin Wang} is a postgraduate student in Intelligence Science and Technology at University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/JiaminWang.jpg}}{\textbf{Jiamin Wang} is a PhD student  at the School of Intelligence Science and Technology, University of Science and Technology Beijing. She received an undergraduate Diploma in University of Science and Technology Beijing, in 2021. Her research field is computer graphics, especially physically-based fluid simulation.}
 \end{biography}
 
 \vspace{7ex}
 
-\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YalanZhang.jpg}}{\textbf{Yalan Zhang} received her Ph.D. degree in Computer Science and Technology from University of Science and Technology Beijing, China, in 2020. Currently, she is a lecturer in Institute of Artificial Intelligence, University of Science and Technology Beijing. Her research interests include computer graphics, 3-D visualization and computer vision.}
+\begin{biography}{\includegraphics[width=66pt,height=86pt]{VANCOUVER/figure/photos/YalanZhang.jpg}}{\textbf{Yalan Zhang} received her PhD degree in Computer Science and Technology from University of Science and Technology Beijing, China, in 2020. Currently, she is a lecturer in School of Intelligence Science and Technology, University of Science and Technology Beijing. Her research interests include computer graphics, 3-D visualization and computer vision.}
 \end{biography}
 
 \vspace{7ex}
